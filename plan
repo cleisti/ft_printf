@@ -1,0 +1,23 @@
+int						d/i
+size_t					z
+
+octal					o
+hexadecimal (LC)		x
+hexadecimal (UC)		X
+
+float/double			f
+
+char					c
+
+char *					s
+pointer address			p
+
+nb of chars written		n
+
+flags:
+
+h = short (d & i), unsigned short (o, u, x, X)
+hh = signed char (d & i), unsigned char (o, u, x, X)
+l = long (d & i), unsigned long (o, u, x, X)
+ll = long long (d & i), unsigned long long (o, u, x, X)
+L = long double (f)
