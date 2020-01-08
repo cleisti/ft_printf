@@ -16,6 +16,13 @@
 #include <unistd.h>
 #include <stdarg.h>
 
+typedef struct		s_args
+{
+	char			*str;
+	char			c;
+	struct s_args	*next;
+}					t_args;
+
 int		ft_printf(const char *format, ...);
 
 #endif
