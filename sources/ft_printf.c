@@ -21,59 +21,105 @@ int		print_string(char *full_str)
 	return (ft_strlen(full_str));
 }
 
-char		*check_args(va_list args, char **full_str)
+char		*check_args(va_list args, char *trav, size_t i)
 {
+	char	*temp;
 	char	*str;
 	char	c;
-//	int		i;
 
-	if (**full_str + 1 == 'c')
+	if (trav[i] == 'c')
+	{
 		c = va_arg(args, int);
-//	ft_putchar(i);
-//	c = i;
-	ft_putchar(c);
-//	ft_strncat(*full_str, &c, 1);
+		str = ft_strnew(2);
+		str[0] = c;
+		str[1] = '\0';
+	}
+	else if (trav[i] == 's')
+	{
+		temp = va_arg(args, char*);
+		str = ft_strdup(temp);
+		printf("%s\n", str);
+	}
 	return (str);
 }
 
-char		*parse_str(va_list args, char *full_str)
+char		*concenate_strings(char *ptr, char *trav, size_t i)
+{
+	char	*str;
+	char	*temp;
+	size_t	x;
+
+	x = i;
+	while (trav[x] != '%')
+		x--;
+	printf("x = %d\n", x);
+	while (trav[x] != 'c')
+		x++;
+	x++;
+	printf("x = %d, i = %d\n", x, i);
+	str = ft_strnew(ft_strlen(ptr) + (i - x));
+	ft_strcpy(str, ptr);
+	temp = ft_strsub(trav, x, i - x);
+	printf("strlen str = %zu\n", ft_strlen(str));
+	printf("temp = %s\n", temp);
+	str = ft_strjoin(str, temp);
+	printf("str = %s\n", str);
+	return (str);
+}
+
+char		*parse_str(va_list args, char *trav)
 {
 	t_args	*start;
 	char	*ptr;
-	int		len;
+	size_t	len;
+	size_t	i;
+	char	*temp;
 
 	if (!(start = malloc(sizeof(t_args))))
 		return (NULL);
 	len = 0;
-	while (full_str[len])
+	while (trav[i])
 	{
-		if (full_str[len] == '%')
+		if (trav[i] == '%')
 		{
-			if (!(ptr = (char*)malloc(sizeof(char) * len)))
-				return (NULL);
-//			printf("%s\n", full_str);
-			ptr = ft_strndup(full_str, len);
+			if (!ptr)
+				ptr = ft_strndup(trav, i);
+			else
+			{
+				len = ft_strlen(ptr);
+				ptr = ft_strjoin(ptr, ft_strsub(trav, len + 1, i - len - 1));
+			}
+			i++;
+			temp = check_args(args, trav, i);
+//			printf("temp = %s\n", temp);
+			ptr = ft_strjoin(ptr, temp);
+			free(temp);
 //			printf("%s\n", ptr);
-			ft_strjoin(full_str, check_args(args, &full_str));
 		}
-		len++;
+		else if (trav[i + 1] == '\0')
+		{
+			printf("trav[i] = %c\n", trav[i]);
+			ptr = concenate_strings(ptr, trav, i);
+			printf("%s\n", ptr);
+		}
+		i++;
 	}
 	return (ptr);
 }
 
 int		ft_printf(const char *format, ...)
 {
-	char	*traverse;
+	char	*trav;
 	va_list	args;
 
 //	printf("%s\n", format);
 	if (!(format))
 		return (-1);
-	traverse = (char*)format;
+	trav = (char*)format;
 //	printf("%s\n", full_str);
 	va_start(args, format);
-	traverse = parse_str(args, traverse);
+	trav = parse_str(args, trav);
 //	printf("%s\n", full_str);
 	va_end(args);
-	return (print_string(traverse));
+	return (print_string(trav));
 }
