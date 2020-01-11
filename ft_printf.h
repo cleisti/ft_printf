@@ -11,10 +11,12 @@
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+# define FT_PRINTF_H
 
-#include <unistd.h>
-#include <stdarg.h>
+# include "libft/libft.h"
+# include <unistd.h>
+# include <stdarg.h>
+# include <stdio.h>
 
 typedef struct		s_args
 {
@@ -24,5 +26,9 @@ typedef struct		s_args
 }					t_args;
 
 int		ft_printf(const char *format, ...);
+char	*parse_str(va_list args, char *trav);
+char	*concenate_strings(char *ptr, char *trav, size_t i);
+char	*check_args(va_list args, char *trav, size_t i);
+int		print_string(char *full_str);
 
 #endif

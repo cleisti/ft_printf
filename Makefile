@@ -5,31 +5,28 @@
 #                                                     +:+ +:+         +:+      #
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/12/25 11:33:50 by marvin            #+#    #+#              #
-#    Updated: 2020/01/07 16:33:53 by cleisti          ###   ########.fr        #
+#    Created: 2020/01/10 13:19:17 by marvin            #+#    #+#              #
+#    Updated: 2020/01/10 13:19:17 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-SRCS = sources/ft_printf.c
-OBJ = $(subst .c,.o,$(SRCS))
-INCL = includes/
-CC = gcc -Wall -Wextra -Werror
-LIBRARY = ar rc $(NAME) $(OBJ)
+NAME = test
+HDR = ft_printf.h
+SRC = main.c ft_printf.c
 
-.PHONY: all clean fclean re
+LIB = libft/libft.a
+CC = gcc
+FLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
-$(NAME): $(SRCS)
-	$(CC) -c $(SRCS) -I $(INCL)
-	$(LIBRARY)
-	ranlib $(NAME)
+$(NAME):
+	$(CC) $(FLAGS) $(SRC) $(HDR) $(LIB) -o $(NAME)
 
-clean:
-	@rm -f $(OBJ)
+clean: 
+	rm -rf *.swp
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all

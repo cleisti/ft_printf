@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
-#include <stdarg.h>
-#include "../libft/libft.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
 int		print_string(char *full_str)
 {
@@ -52,11 +49,11 @@ char		*concenate_strings(char *ptr, char *trav, size_t i)
 	x = i;
 	while (trav[x] != '%')
 		x--;
-	printf("x = %d\n", x);
+	printf("x = %zu\n", x);
 	while (trav[x] != 'c')
 		x++;
 	x++;
-	printf("x = %d, i = %d\n", x, i);
+	printf("x = %zu, i = %zu\n", x, i);
 	str = ft_strnew(ft_strlen(ptr) + (i - x));
 	ft_strcpy(str, ptr);
 	temp = ft_strsub(trav, x, i - x);

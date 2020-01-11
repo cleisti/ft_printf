@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/09 22:19:25 by marvin            #+#    #+#             */
+/*   Updated: 2020/01/10 14:49:15 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int		check_validity(char c, int str_base)
+static int		check_validity(char c, int str_base)
 {
 	char	*l_valids = "0123456789abcdef";
 	char	*u_valids = "0123456789ABCDEF";
@@ -23,7 +35,7 @@ int		convert_base(char c, int str_base)
 	return ((c - 'A') + 10);
 }
 
-int		ft_atoi_base(const char *str, int str_base)
+int				ft_atoi_base(const char *str, int str_base)
 {
 	unsigned long long	res;
 	int					neg;

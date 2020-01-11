@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 10:26:59 by cleisti           #+#    #+#             */
-/*   Updated: 2019/11/06 12:02:04 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/01/10 13:51:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 		if (csrc[i] == (unsigned char)c)
 		{
 			cdst[i] = (unsigned char)c;
-			return (&dst[i + 1]);
+			return (&cdst[i + 1]);
 		}
 		i++;
 	}

@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/10/25 19:42:12 by cleisti           #+#    #+#              #
-#    Updated: 2019/12/25 22:49:38 by marvin           ###   ########.fr        #
+#    Created: 2019/12/25 11:33:50 by marvin            #+#    #+#              #
+#    Updated: 2020/01/07 16:33:53 by cleisti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME = libftprintf.a
 SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c \
 	   ft_atoi.c ft_toupper.c ft_tolower.c ft_isprint.c ft_isdigit.c ft_isascii.c ft_isalpha.c \
    	   ft_isalnum.c ft_memcmp.c ft_strcmp.c ft_strncmp.c ft_strlen.c ft_strlcat.c ft_itoa.c \
@@ -20,9 +20,9 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c 
 	   ft_strclr.c ft_striter.c ft_striteri.c ft_strequ.c ft_strnequ.c ft_strnew.c ft_strmap.c \
 	   ft_strmapi.c ft_strsub.c ft_strjoin.c ft_strtrim.c ft_strsplit.c ft_strrev.c ft_isspace.c \
 	   ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_lstappend.c \
-	   ft_isupper.c ft_islower.c ft_realloc.c ft_strndup.c
+	   ft_isupper.c ft_islower.c ft_realloc.c ft_strndup.c ft_itoa_base.c ft_atoi_base.c ../ft_printf.c
 OBJ = $(subst .c,.o,$(SRCS))
-FLAGS = -Wall -Wextra -Werror
+CC = gcc -Wall -Wextra -Werror
 LIBRARY = ar rc $(NAME) $(OBJ)
 
 .PHONY: all clean fclean re
@@ -30,14 +30,14 @@ LIBRARY = ar rc $(NAME) $(OBJ)
 all: $(NAME)
 
 $(NAME): $(SRCS)
-	@gcc $(FLAGS) -c $(SRCS)
-	@$(LIBRARY)
-	@ranlib $(NAME)
+	$(CC) -c $(SRCS)
+	$(LIBRARY)
+	ranlib $(NAME)
 
 clean:
 	@rm -f $(OBJ)
 
 fclean: clean
 	@rm -f $(NAME)
-	
+
 re: fclean all

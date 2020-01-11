@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:28:26 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/09 13:11:30 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/01/10 13:44:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-#include "libft/libft.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
 int		main(void)
 {
