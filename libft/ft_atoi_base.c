@@ -3,30 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 22:19:25 by marvin            #+#    #+#             */
-/*   Updated: 2020/01/10 14:49:15 by marvin           ###   ########.fr       */
+/*   Updated: 2020/01/11 15:44:44 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static int		check_validity(char c, int str_base)
 {
-	char	*l_valids = "0123456789abcdef";
-	char	*u_valids = "0123456789ABCDEF";
+	char	*lc_vals;
+	char	*uc_vals;
 
-	while (str_base)
+	lc_vals = "0123456789abcdef";
+	uc_vals = "0123456789ABCDEF";
+	while (str_base >= 0)
 	{
-		if (c == l_valids[str_base] || c == u_valids[str_base])
+		if (c == lc_vals[str_base] || c == uc_vals[str_base])
 			return (1);
 		str_base--;
 	}
 	return (0);
 }
 
-int		convert_base(char c, int str_base)
+int		convert_base(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (c - '0');
@@ -49,9 +52,12 @@ int				ft_atoi_base(const char *str, int str_base)
 	(str[i] == '-' || str[i] == '+') ? i++ : 0;
 	if (str[i - 1] == '-')
 		neg = -1;
-	while (check_validity(str[i], str_base))
+	while (str[i])
 	{
-		res = res * str_base + convert_base(str[i], str_base);
+		if (check_validity(str[i], str_base))
+			res = res * str_base + convert_base(str[i]);
+		else
+			return (0);
 		i++;
 	}
 	return (neg * res);

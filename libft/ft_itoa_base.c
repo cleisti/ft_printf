@@ -16,11 +16,14 @@ static int	count_len(int value, int base, int neg)
 {
 	unsigned int size;
 
-	size = 0;
+	size = 1;
 	if (neg)
 		size++;
-	while (value/base != 0)
+	while (value / base != 0)
+	{
+		value /= base;
 		size++;
+	}
 	return (size);
 }
 
@@ -38,13 +41,13 @@ char	*ft_itoa_base(int value, int base)
 	if (value < 0 && base == 10)
 		neg = 1;
 	size = count_len(value, base, neg);
-	if (!(str = ft_strnew(sizeof(size + 1))));
+	if (!(str = ft_strnew(sizeof(size + 1))))
 		return (NULL);
 	str[size--] = '\0';
 	while (value)
 	{
 		str[size] = vals[value % base];
-		value / base;
+		value /= base;
 		size--;
 	}
 	if (neg)

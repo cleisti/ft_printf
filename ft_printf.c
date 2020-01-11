@@ -31,7 +31,7 @@ char		*check_args(va_list args, char *trav, size_t i)
 		str[0] = c;
 		str[1] = '\0';
 	}
-	else if (trav[i] == 's')
+	else
 	{
 		temp = va_arg(args, char*);
 		str = ft_strdup(temp);
@@ -75,6 +75,7 @@ char		*parse_str(va_list args, char *trav)
 	if (!(start = malloc(sizeof(t_args))))
 		return (NULL);
 	len = 0;
+	i = 0;
 	while (trav[i])
 	{
 		if (trav[i] == '%')

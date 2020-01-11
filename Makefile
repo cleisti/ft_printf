@@ -11,7 +11,6 @@
 # **************************************************************************** #
 
 NAME = test
-HDR = ft_printf.h
 SRC = main.c ft_printf.c
 
 LIB = libft/libft.a
@@ -21,7 +20,7 @@ FLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(FLAGS) $(SRC) $(HDR) $(LIB) -o $(NAME)
+	$(CC) $(FLAGS) $(SRC) $(LIB) -o $(NAME)
 
 clean: 
 	rm -rf *.swp
