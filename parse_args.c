@@ -6,19 +6,19 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 10:23:27 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/15 10:27:56 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/01/17 17:52:23 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-func_ptr g_funcs_arr[1] = { (open_c) };
+func_ptr g_funcs_arr[9] = {open_c, open_s, open_p, open_d};
 
-char	*get_argument(t_args *ptr, va_list args)
+char	*get_argument(va_list args, t_args *ptr)
 {
 	char		*str;
 
-	str = g_funcs_arr[ptr->modifier](args);
+	str = g_funcs_arr[ptr->mod](args, ptr);
 	return (str);
 }
 
@@ -33,7 +33,7 @@ char	*parse_arguments(char *trav, va_list args, t_args *start)
 	ft_strncpy(str, trav, start->len);
 	while (start)
 	{
-		temp = get_argument(start, args);
+		temp = get_argument(args, ptr);
 		str = ft_strjoin(str, temp);
 		if (start->next)
 			str = get_middle(str, trav, start);

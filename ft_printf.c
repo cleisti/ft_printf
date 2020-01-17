@@ -28,7 +28,10 @@ char	*parse_format_str(va_list args, char *trav)
 	
 	start = malloc(sizeof(t_args));
 	start = arguments_to_list(trav, start);
-	full_str = parse_arguments(trav, args, start);
+	if (!(start))
+		full_str = check_for_percentage_signs(trav);
+	else
+		full_str = parse_arguments(trav, args, start);
 	return (full_str);
 }
 

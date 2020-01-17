@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 10:25:40 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/15 11:05:48 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/01/15 14:41:44 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ char	*get_end(char *str, char *trav, t_args *ptr)
 	char *temp;
 	int len;
 
-	len = ft_strlen(trav) - ptr->end_index;
-	temp = ft_strndup(trav + ptr->end_index, len);
+	len = ft_strlen(trav) - ptr->end;
+	temp = ft_strndup(trav + ptr->end, len);
 	str = ft_strjoin(str, temp);
 	return (str);
 }
@@ -29,11 +29,11 @@ char	*get_middle(char *str, char *trav, t_args *ptr)
 	int i;
 	int len;
 
-	i = ptr->end_index;
+	i = ptr->end;
 	while (trav[i] != '%')
 		i++;
-	len = i - ptr->end_index;
-	temp = ft_strndup(trav + ptr->end_index, len);
+	len = i - ptr->end;
+	temp = ft_strndup(trav + ptr->end, len);
 	str = ft_strjoin(str, temp);
 	return (str);
 }

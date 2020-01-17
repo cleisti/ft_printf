@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = test
-SRC = main.c ft_printf.c check_funcs.c list_funcs.c parse_args.c open_funcs1.c refine_str.c
+SRC = main.c ft_printf.c check_funcs.c list_funcs.c parse_args.c open_funcs1.c refine_str.c helper_funcs.c
 
 LIB = libft/libft.a
 CC = gcc

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	count_len(int value, int base, int neg)
+static int	count_len(unsigned long long value, int base, int neg)
 {
 	unsigned int size;
 
@@ -27,14 +27,14 @@ static int	count_len(int value, int base, int neg)
 	return (size);
 }
 
-char	*ft_itoa_base(int value, int base)
+char	*ft_itoa_base(unsigned long long value, int base)
 {
 	char	*str;
 	char	*vals;
 	int		size;
 	int		neg;
 
-	vals = "0123456789ABCDEF";
+	vals = "0123456789abcdef";
 	neg = 0;
 	if (base < 2 || base > 16)
 		return (NULL);

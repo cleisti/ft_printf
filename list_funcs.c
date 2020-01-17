@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:28:11 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/14 13:29:00 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/01/17 17:46:16 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,32 @@
 
 void	initialize_t_args(t_args *ptr)
 {
-	ptr->str = NULL;
-	ptr->modifier = -1;
-	ptr->flag = 0;
-	ptr->precision = 0;
+	ptr->mod = -1;
+	ptr->flag[0] = -1;
+	ptr->flag[1] = -1;
+	ptr->flag[2] = -1;
+	ptr->flag[3] = -1;
+	ptr->flag[4] = -1;
+	ptr->w = 0;
+	ptr->prec = 0;
 	ptr->len_mod = 0;
 	ptr->len = 0;
-	ptr->end_index = 0;
+	ptr->start = 0;
+	ptr->end = 0;
 	ptr->next = 0;
 }
 
 /*
 ** Make a check to see if there is anything unnecessary that doesn't belong ?
+** printf("ptr->flag: %d | ptr->w: %d | ptr->prec: %d | ptr->len_mod: %d\n", ptr->flag, ptr->w, ptr->prec, ptr->len_mod);
 */
 
 t_args	*put_to_list(char *trav, int i, t_args *ptr)
 {
-	int x;
+	static int x;
 
 	x = i;
-	if (ptr->modifier != -1)
+	if (ptr->mod != -1)
 	{
 		ptr->next = malloc(sizeof(t_args));
 		ptr = ptr->next;
@@ -43,14 +49,18 @@ t_args	*put_to_list(char *trav, int i, t_args *ptr)
 		i++;
 	while (x < i)
 	{
-		if (!(ptr->flag))
-			check_flags(trav, i, ptr);
-		else if (!(ptr->precision))
-			check_precision(trav, i, ptr);
-		else if (!(ptr->len_mod))
-			check_length_modifier(trav, i, ptr);
+//		printf("x = %d\n", x);
+		x = check_flags(trav, x, ptr);
+//		printf("x2 = %d\n", x);
+		x = check_width(trav, x, ptr);
+//		printf("x3 = %d\n", x);
+		x = check_precision(trav, x, ptr);
+//		printf("x4 = %d\n", x);
+		x = check_length_modifier(trav, x, ptr);
+//		printf("x5 = %d\n", x);
 		x++;
 	}
+//	printf("ptr->flags: %d|%d|%d|%d|%d | ptr->w: %d | ptr->prec: %d | ptr->len_mod: %d\n", ptr->flag[0], ptr->flag[1],ptr->flag[2],ptr->flag[3],ptr->flag[4],ptr->w, ptr->prec, ptr->len_mod);
 	return (ptr);
 }
 
@@ -80,7 +90,7 @@ t_args	*arguments_to_list(char *trav, t_args *start)
 		}
 		i++;
 	}
-	if (start->modifier == 0)
-		start->str = ft_strdup(trav);
+	if (start->mod == -1)
+		start = NULL;
 	return (start);
 }
