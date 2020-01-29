@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper_funcs.c                                     :+:      :+:    :+:   */
+/*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/17 17:38:37 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/17 17:39:51 by cleisti          ###   ########.fr       */
+/*   Created: 2020/01/23 17:32:14 by cleisti           #+#    #+#             */
+/*   Updated: 2020/01/27 16:38:52 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
+#include <stdio.h>
 
-char	*set_str(int len, int w, char c)
+char	*ft_ftoa(long double f, int prec)
 {
-	char *str;
+	char		*str;
+	char		*bef;
+	char		*aft;
+	long double	a;
 
-	if (w > len)
-	{
-		str = ft_strnew(w);
-		ft_memset(str, c, w);
-		return (str);
-	}
-	str = ft_strnew(len);
-	ft_memset(str, c, w);
-	return (str);
-}
-
-char	*base_string(unsigned long long u)
-{
-	char	*str;
-	char	*get;
-	char	*zx;
-
-	zx = "0x";
-	get = ft_itoa_base(u, 16);
-	str = ft_strjoin(zx, get);
-	free(get);
+	bef = ft_itoa((int)f);
+	(f < 0) ? f *= -1 : 0;
+	a = f - (int)f;
+	a = a * ft_pow(10, prec);
+	aft = ft_itoa(a);
+	str = ft_strjoin(bef, ".");
+	ft_strcat(str, aft);
+	free(bef);
+	free(aft);
 	return (str);
 }

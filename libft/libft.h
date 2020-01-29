@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 12:58:10 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/16 16:37:17 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/01/27 13:12:14 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_atoi(const char *str);
 int					ft_atoi_base(const char *str, int str_base);
+long long			ft_pow(int num, int topow);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 int					ft_isprint(int c);
@@ -77,8 +78,10 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				**ft_strsplit(char const *s, char c);
-char				*ft_itoa(int n);
-char				*ft_itoa_base(unsigned long long value, int base);
+char				*ft_itoa(long long n);
+char				*ft_itoa_base(long long value, int base);
+char				*ft_uitoa_base(unsigned long long value, int base);
+char				*ft_ftoa(long double f, int prec);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));

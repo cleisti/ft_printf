@@ -1,0 +1,2 @@
+#!/bin/bash
+norminette ft_printf.c check_funcs.c list_funcs.c parse_args.c open_funcs1.c open_funcs2.c refine_str.c helper_funcs.c len_mods.c

@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 15:36:44 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/11 14:57:18 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/01/23 16:26:12 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,12 @@ char	*ft_strdup(const char *s1)
 {
 	char	*dup;
 	int		i;
-	int		len;
+	size_t	len;
 
 	i = 0;
-	len = ft_strlen((char*)s1);
-	dup = (char*)malloc(sizeof(char) * len + 1);
-	if (!(dup))
-		return (NULL);
-	while (s1[i] != '\0')
+	len = ft_strlen(s1);
+	dup = ft_strnew(len);
+	while (i < (int)len)
 	{
 		dup[i] = s1[i];
 		i++;
