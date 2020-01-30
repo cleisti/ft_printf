@@ -1,51 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_uitoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/28 13:27:55 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/23 17:39:58 by cleisti          ###   ########.fr       */
+/*   Created: 2020/01/23 11:35:12 by cleisti           #+#    #+#             */
+/*   Updated: 2020/01/23 16:27:21 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-static int		count_len(long long nb)
+static int	count_len(unsigned long long value, int base)
 {
 	unsigned int size;
 
 	size = 1;
-	if (nb < 0)
-		size++;
-	while (nb / 10 != 0)
+	while (value / base != 0)
 	{
-		nb /= 10;
+		value /= base;
 		size++;
 	}
 	return (size);
 }
 
-char			*ft_itoa(long long n)
+char		*ft_uitoa_base(unsigned long long value, int base)
 {
 	char	*str;
-	int		neg;
+	char	*vals;
 	int		size;
 
-	neg = (n < 0);
-	size = count_len(n);
-	str = ft_strnew(size);
+	vals = "0123456789abcdef";
+	if (base < 2 || base > 16)
+		return (NULL);
+	size = count_len(value, base);
+	if (!(str = ft_strnew(sizeof(size + 1))))
+		return (NULL);
 	str[size] = '\0';
 	size--;
-	if (n == 0)
-		str[size] = '0';
-	while (size >= 0)
+	while (value)
 	{
-		str[size--] = (n < 0) ? '0' - n % 10 : n % 10 + '0';
-		n /= 10;
+		str[size] = vals[value % base];
+		value /= base;
+		size--;
 	}
-	if (neg)
-		str[0] = '-';
 	return (str);
 }

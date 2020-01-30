@@ -6,11 +6,12 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 16:54:14 by cleisti           #+#    #+#             */
-/*   Updated: 2019/11/11 10:57:57 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/01/29 12:29:04 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 char	*ft_strndup(const char *s1, size_t n)
 {
