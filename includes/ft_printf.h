@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <stdarg.h>
 
+// con -> len_mod | len_mod ->prec_w
+
 typedef struct			s_args
 {
 	int					mod;
