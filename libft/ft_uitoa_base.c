@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 11:35:12 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/23 16:27:21 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/01/31 16:18:10 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int	count_len(unsigned long long value, int base)
 	unsigned int size;
 
 	size = 1;
+	if (value == 0)
+		return (size);
 	while (value / base != 0)
 	{
 		value /= base;
@@ -40,11 +42,16 @@ char		*ft_uitoa_base(unsigned long long value, int base)
 		return (NULL);
 	str[size] = '\0';
 	size--;
-	while (value)
+	if (value == 0)
+		str[0] = '0';
+	else
 	{
-		str[size] = vals[value % base];
-		value /= base;
-		size--;
+		while (value)
+		{
+			str[size] = vals[value % base];
+			value /= base;
+			size--;
+		}
 	}
 	return (str);
 }

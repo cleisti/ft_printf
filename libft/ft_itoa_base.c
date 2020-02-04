@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 15:51:26 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/30 16:04:39 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/01/31 16:15:52 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	count_len(long long value, int base, int neg)
 	unsigned int size;
 
 	size = 1;
+	if (value == 0)
+		return (size);
 	if (neg)
 		size++;
 	while (value / base != 0)
@@ -43,11 +45,16 @@ char		*ft_itoa_base(long long value, int base)
 	size = count_len(value, base, neg);
 	str = ft_strnew(sizeof(size + 1));
 	str[size--] = '\0';
-	while (value)
+	if (value == 0)
+		str[0] = '0';
+	else
 	{
-		str[size] = vals[value % base];
-		value /= base;
-		size--;
+		while (value)
+		{
+			str[size] = vals[value % base];
+			value /= base;
+			size--;
+		}
 	}
 	if (neg)
 		str[0] = '-';

@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:28:26 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/29 12:42:01 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/04 14:55:28 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		main(void)
 {
-	char c = 'K';
+/*	char c = 'K';
 	char d = 'L';
 	char e = 'M';
 
@@ -73,12 +73,22 @@ int		main(void)
 	printf("ret: %d\n", ft_printf("ft_printf %%#.7o: '%#.7o'\n", o));
 	printf("ret: %d\n\n", printf("rl_printf %%#.7o: '%#.7o'\n", o));
 
+	long oo = 72940275853;
+
+	printf("ret: %d\n", ft_printf("ft_printf %%#.7lo: '%#.7lo'\n", oo));
+	printf("ret: %d\n\n", printf("rl_printf %%#.7lo: '%#.7lo'\n", oo));
+
+	unsigned long long ooo = 61987334538990;
+
+	printf("ret: %d\n", ft_printf("ft_printf %%#25llo: '%#25llo'\n", ooo));
+	printf("ret: %d\n\n", printf("rl_printf %%#25llo: '%#25llo'\n", ooo));
+
 	int u = -1;
 	int up = 4292;
 //	unsigned int l = 4294967295;
 
-	printf("ret: %d\n", ft_printf("ft_printf %%u: '%u' | '%010.6u'\n", u, up));
-	printf("ret: %d\n\n", printf("rl_printf %%u: '%u' | '%010.6u'\n", u, up));
+	printf("ret: %d\n", ft_printf("ft_printf %%010.6u: '%u' | '%010.6u'\n", u, up));
+	printf("ret: %d\n\n", printf("rl_printf %%010.6u: '%u' | '%010.6u'\n", u, up));
 
 	int he = -8380;
 
@@ -113,10 +123,18 @@ int		main(void)
 	printf("ret: %d\n", ft_printf("ft_printf: t%%esting %%%%%% !%%!!\n"));
 	printf("ret: %d\n\n", printf("rl_printf: t%%esting %%%%%% !%%!!\n"));
 
-	char null = '\0';
+	printf("ret: %d\n", ft_printf("ft_printf: NULL: '%llu'\n", -1ll));
+	printf("ret: %d\n\n", printf("rl_printf: NULL: '%llu'\n", -1ll));
 
-	printf("ret: %d\n", ft_printf("ft_printf: NULL: '%1c'\n", null));
-	printf("ret: %d\n\n", printf("rl_printf: NULL: '%1c'\n", null));
+//	printf("uitoa: %s | printf: %o\n", ft_uitoa_base(-1ll, 16), -1);
+
+	printf("%Lf\n", -56.2012685l);
+	ft_printf("%Lf\n", -56.2012685l); */
+
+//	printf("%");
+	ft_printf("%#.x %#.0x", 0, 0);
+	//ft_printf("%5%");
+//	printf("%");
 //	unsigned long long u = 140732770003580;
 //	printf("here: %s\n", ft_itoa_base(u, 16));
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 16:23:20 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/27 17:28:26 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/04 14:46:05 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 char	*open_o(va_list args, t_args *ptr)
 {
-	int		nb;
-	char	*str;
-	char	*get;
+	long long	nb;
+	char		*str;
+	char		*get;
 
-	nb = va_arg(args, int);
-	get = base_string(nb, 8, ptr);
+	if (ptr->len_mod == -1)
+	{
+		nb = va_arg(args, long long);
+		get = ft_itoa_base(nb, 8);
+		get = base_string(get, ptr);
+	}
+	else
+		get = convert(args, ptr);
 	if (ptr->prec_w > (int)ft_strlen(get))
 		get = add_zeros(get, ptr->prec_w, ptr->neg);
 	if (ptr->w > (int)ft_strlen(get))
@@ -36,8 +42,14 @@ char	*open_u(va_list args, t_args *ptr)
 	char			*get;
 	char			*str;
 
-	u = va_arg(args, unsigned int);
-	get = ft_itoa(u);
+	if (ptr->len_mod == -1)
+	{
+		u = va_arg(args, unsigned int);
+		get = ft_itoa(u);
+		get = base_string(get, ptr);
+	}
+	else
+		get = convert(args, ptr);
 	if (ptr->prec_w > (int)ft_strlen(get))
 		get = add_zeros(get, ptr->prec_w, ptr->neg);
 	if (ptr->w > (int)ft_strlen(get))
@@ -50,14 +62,17 @@ char	*open_u(va_list args, t_args *ptr)
 
 char	*open_x(va_list args, t_args *ptr)
 {
-	unsigned long long	nb;
-	char				*str;
-	char				*get;
+	unsigned int	nb;
+	char			*str;
+	char			*get;
 
 	if (ptr->len_mod == -1)
 	{
-		nb = va_arg(args, unsigned long long);
-		get = base_string(nb, 16, ptr);
+		nb = va_arg(args, unsigned int);
+		if (nb == 0)
+			ptr->flag[0] = 0;
+		get = ft_uitoa_base(nb, 16);
+		get = base_string(get, ptr);
 	}
 	else
 		get = convert(args, ptr);

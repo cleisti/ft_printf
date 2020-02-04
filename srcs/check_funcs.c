@@ -6,24 +6,22 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:15:20 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/28 10:22:12 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/04 14:19:53 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/*
-** What happens if modifier not found ?
-*/
-
 int		check_modifier(char *trav, int i, t_args *ptr)
 {
 	char	*modifiers;
 	int		x;
+	int		ret;
 
-	modifiers = "cspdiouxXf";
+	modifiers = "cspdiouxXf%";
 	x = 0;
-	while (modifiers[x])
+	ret = validate_modifier(trav, i, ptr);
+	while (modifiers[x] && ret == 1)
 	{
 		if (modifiers[x] == trav[i])
 		{
@@ -40,10 +38,6 @@ int		check_modifier(char *trav, int i, t_args *ptr)
 	}
 	return (0);
 }
-
-/*
-** Find better solution ? Char *str instead of integer ?
-*/
 
 int		check_conversion(char *trav, int i, t_args *ptr)
 {
@@ -68,10 +62,6 @@ int		check_conversion(char *trav, int i, t_args *ptr)
 		ptr->len_mod = 12;
 	return (i);
 }
-
-/*
-** Add loop to get bigger numbers (atoi! ahoi!)
-*/
 
 int		check_precision(char *trav, int i, t_args *ptr)
 {

@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 10:23:27 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/30 16:04:50 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/04 14:19:32 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,20 @@ char	*get_argument(va_list args, t_args *ptr, char *str)
 	char	*p;
 
 	p = str;
-	temp = g_funcs_arr[ptr->mod](args, ptr);
-	str = ft_strjoin(str, temp);
-	free(p);
-	free(temp);
+	if (ptr->mod == 9)
+		temp = open_percentage(ptr);
+	else if (ptr->mod == 10)
+		return (str);
+	else
+		temp = g_funcs_arr[ptr->mod](args, ptr);
+	if (str)
+	{
+		str = ft_strjoin(str, temp);
+		free(p);
+		free(temp);
+	}
+	else
+		str = temp;
 	return (str);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 17:38:37 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/30 16:05:03 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/04 14:56:05 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,12 @@ char	*set_str(int w, char c)
 	return (str);
 }
 
-char	*base_string(long long u, int base, t_args *ptr)
+char	*base_string(char *get, t_args *ptr)
 {
 	char	*str;
-	char	*get;
 	int		i;
 
 	i = 0;
-	if (ptr->mod < 4)
-		get = ft_itoa_base(u, base);
-	else
-		get = ft_uitoa_base(u, base);
 	if (ptr->mod == 2 || (ptr->mod == 6 && ptr->flag[0] == 1))
 		str = ft_strjoin("0x", get);
 	else if (ptr->flag[0] == 1 && ptr->mod == 4)

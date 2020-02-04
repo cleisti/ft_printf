@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <unistd.h>
 # include <stdarg.h>
+# include <stdio.h>
 
 // con -> len_mod | len_mod ->prec_w
 
@@ -31,6 +32,8 @@ typedef struct			s_args
 	int					x;
 	int					len;
 	int					null;
+	int					rm_p;
+	int					str;
 	int					start;
 	int					end;
 	struct s_args		*next;
@@ -51,6 +54,7 @@ char	*open_o(va_list args, t_args *ptr);
 char	*open_u(va_list args, t_args *ptr);
 char	*open_x(va_list args, t_args *ptr);
 char	*open_f(va_list args, t_args *ptr);
+char	*open_percentage(t_args *ptr);
 
 char	*open_h(va_list args, t_args *ptr);
 char	*open_hh(va_list args, t_args *ptr);
@@ -62,15 +66,18 @@ char	*convert(va_list args, t_args *ptr);
 char	*get_argument(va_list args, t_args *ptr, char *str);
 int		parse_arguments(char *trav, va_list args, t_args *start);
 
-char	*check_for_percentage_signs(char *str);
-char	*remove_percentage(char *str, int i);
+//char	*check_for_percentage_signs(char *str);
+//char	*remove_percentage(char *str, int i);
 char	*get_middle(char *str, char *trav, t_args *ptr);
 char	*get_end(char *str, char *trav, t_args *ptr);
 
 t_args	*arguments_to_list(char *trav, t_args *start);
 t_args	*put_to_list(char *trav, int i, t_args *ptr);
+int		validate_modifier(char *trav, int i, t_args *ptr);
 void	initialize_t_args(t_args *ptr);
+
 void	free_list(t_args *ptr);
+//void	*error(void);
 
 int		check_modifier(char *trav, int i, t_args *ptr);
 int		check_conversion(char *trav, int i, t_args *ptr);
@@ -79,7 +86,7 @@ int		check_flags(char *trav, int i, t_args *ptr);
 int		check_width(char *trav, int i, t_args *ptr);
 
 char	*set_str(int w, char c);
-char	*base_string(long long u, int base, t_args *ptr);
+char	*base_string(char *get, t_args *ptr);
 char	*plus_space(char *get, int plus, int space);
 char	*add_zeros(char *get, int len, int neg);
 char	*set_width(char *get, t_args *ptr, int neg);

@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 12:42:30 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/30 16:04:58 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/04 14:47:52 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*open_h(va_list args, t_args *ptr)
 {
 	unsigned short	us;
 	char			*str;
+	char			*get;
 	short			sh;
 
 	if (ptr->mod == 3)
@@ -28,7 +29,15 @@ char	*open_h(va_list args, t_args *ptr)
 	else
 	{
 		us = va_arg(args, int);
-		str = ft_itoa(us);
+		if (us == 0)
+			ptr->flag[0] = 0;
+		if (ptr->mod == 5)
+			get = ft_uitoa_base(us, 10);
+		else if (ptr->mod == 4)
+			get = ft_uitoa_base(us, 8);
+		else
+			get = ft_uitoa_base(us, 16);
+		str = base_string(get, ptr);
 		return (str);
 	}
 }
@@ -37,6 +46,7 @@ char	*open_hh(va_list args, t_args *ptr)
 {
 	unsigned char	uc;
 	char			*str;
+	char			*get;
 	char			c;
 	int				nb;
 
@@ -51,14 +61,22 @@ char	*open_hh(va_list args, t_args *ptr)
 	{
 		uc = va_arg(args, int);
 		nb = uc;
-		str = base_string(nb, 16, ptr);
-		return (str);
+		if (nb == 0)
+			ptr->flag[0] = 0;
+		if (ptr->mod == 5)
+			get = ft_uitoa_base(uc, 10);
+		else if (ptr->mod == 4)
+			get = ft_uitoa_base(uc, 8);
+		else
+			get = ft_uitoa_base(nb, 16);
+		return (base_string(get, ptr));
 	}
 }
 
 char	*open_l(va_list args, t_args *ptr)
 {
 	char			*str;
+	char			*get;
 	long			lo;
 	unsigned long	ul;
 
@@ -72,7 +90,15 @@ char	*open_l(va_list args, t_args *ptr)
 	else
 	{
 		ul = va_arg(args, unsigned long);
-		str = base_string(ul, 16, ptr);
+		if (ul == 0)
+			ptr->flag[0] = 0;
+		if (ptr->mod == 5)
+			get = ft_uitoa_base(ul, 10);
+		else if (ptr->mod == 4)
+			get = ft_uitoa_base(ul, 8);
+		else
+			get = ft_uitoa_base(ul, 16);
+		str = base_string(get, ptr);
 		return (str);
 	}
 }
@@ -80,6 +106,7 @@ char	*open_l(va_list args, t_args *ptr)
 char	*open_ll(va_list args, t_args *ptr)
 {
 	char				*str;
+	char				*get;
 	long long			ll;
 	unsigned long long	ull;
 
@@ -93,7 +120,15 @@ char	*open_ll(va_list args, t_args *ptr)
 	else
 	{
 		ull = va_arg(args, unsigned long long);
-		str = base_string(ull, 16, ptr);
+		if (ull == 0)
+			ptr->flag[0] = 0;
+		if (ptr->mod == 5)
+			get = ft_uitoa_base(ull, 10);
+		else if (ptr->mod == 4)
+			get = ft_uitoa_base(ull, 8);
+		else
+			get = ft_uitoa_base(ull, 16);
+		str = base_string(get, ptr);
 		return (str);
 	}
 }

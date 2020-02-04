@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 10:28:16 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/30 16:04:33 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/04 12:45:20 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ char	*open_p(va_list args, t_args *ptr)
 	int					len;
 
 	u = va_arg(args, unsigned long long);
-	get = base_string(u, 16, ptr);
+	get = ft_uitoa_base(u, 16);
+	get = base_string(get, ptr);
 	len = ft_strlen(get);
 	if (ptr->w > len)
 	{
@@ -97,6 +98,21 @@ char	*open_di(va_list args, t_args *ptr)
 	if (!(ptr->neg) && (ptr->flag[2] == 1 || ptr->flag[4] == 1))
 		get = plus_space(get, ptr->flag[2], ptr->flag[4]);
 	if (ptr->w > (int)ft_strlen(get))
+		str = set_width(get, ptr, ptr->neg);
+	else
+		str = ft_strdup(get);
+	free(get);
+	return (str);
+}
+
+char	*open_percentage(t_args *ptr)
+{
+	char	*str;
+	char	*get;
+
+	get = ft_strnew(1);
+	get[0] = '%';
+	if (ptr->w > 1)
 		str = set_width(get, ptr, ptr->neg);
 	else
 		str = ft_strdup(get);
