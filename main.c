@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: camilla <camilla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:28:26 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/04 14:55:28 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/05 20:25:44 by camilla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,12 +129,25 @@ int		main(void)
 //	printf("uitoa: %s | printf: %o\n", ft_uitoa_base(-1ll, 16), -1);
 
 	printf("%Lf\n", -56.2012685l);
-	ft_printf("%Lf\n", -56.2012685l); */
+	ft_printf("%Lf\n", -56.2012685l); 
+*/
+//	printf("%");
+	printf("'%#.x %#.0x'\n", 0, 0);
+	ft_printf("'%#.x %#.0x'\n", 0, 0);
+	ft_printf("%5%\n");
 
-//	printf("%");
-	ft_printf("%#.x %#.0x", 0, 0);
-	//ft_printf("%5%");
-//	printf("%");
+	ft_printf("% hZ%\n");
+	ft_printf("% Z%s\n", "test");
+//	printf("% Z%s\n\n", "test");
+	
+	ft_printf("%jx\n", 4294967295);
+	printf("%jx\n\n", 4294967295);
+
+	ft_printf("%jx\n", 4294967296);
+	printf("%jx\n\n", 4294967296);
+	
+//	printf("% hZ%\n");
+//	printf("%")
 //	unsigned long long u = 140732770003580;
 //	printf("here: %s\n", ft_itoa_base(u, 16));
 	return (0);

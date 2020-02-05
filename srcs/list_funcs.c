@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: camilla <camilla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:28:11 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/04 13:06:02 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/05 20:24:13 by camilla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,18 @@ int		validate_modifier(char *trav, int i, t_args *ptr)
 	char	*valids;
 	int		x;
 
-	valids = "cspdiouxXf%lhL. #0+-123456789";
+	valids = "cspdiouxXf%lhjtzqL. #0+-123456789";
 	x = 0;
 	while (valids[x])
 	{
 		if (valids[x] == trav[i])
 			return (1);
-		else if (x > 27 || trav[i] == '\0')
-		{
-			ptr->mod = 10;
-			ptr->end = i;
-			return (2);
-		}
 		x++;
+	}
+	if (x > 32 || trav[i] == '\0')
+	{
+		ptr->mod = 10;
+		ptr->end = i;
 	}
 	return (0);
 }
@@ -85,11 +84,11 @@ t_args	*put_to_list(char *trav, int i, t_args *ptr)
 		x = check_conversion(trav, x, ptr);
 		x++;
 	}
-	if (ptr->mod == -1)
-	{
-		ptr->mod = 10;
-		ptr->end = i;
-	}
+//	if (ptr->mod == -1)
+//	{
+//		ptr->mod = 10;
+//		ptr->end = i;
+//	}
 	return (ptr);
 }
 

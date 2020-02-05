@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_funcs1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: camilla <camilla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 10:28:16 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/04 12:45:20 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/05 19:28:07 by camilla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ char	*open_percentage(t_args *ptr)
 	char	*str;
 	char	*get;
 
+	
 	get = ft_strnew(1);
 	get[0] = '%';
 	if (ptr->w > 1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_funcs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: camilla <camilla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 17:38:37 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/04 14:56:05 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/05 19:27:51 by camilla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,14 @@ char	*base_string(char *get, t_args *ptr)
 	int		i;
 
 	i = 0;
+	if (ptr->prec_w > (int)ft_strlen(get))
+		get = add_zeros(get, ptr->prec_w, ptr->neg);
 	if (ptr->mod == 2 || (ptr->mod == 6 && ptr->flag[0] == 1))
-		str = ft_strjoin("0x", get);
-	else if (ptr->flag[0] == 1 && ptr->mod == 4)
-		str = ft_strjoin("0", get);
+		get = ft_strjoin("0x", get);
+	if (ptr->flag[0] == 1 && ptr->mod == 4)
+		get = ft_strjoin("0", get);
+	if (ptr->w > (int)ft_strlen(get))
+		str = set_width(get, ptr, ptr->neg);
 	else
 		str = ft_strdup(get);
 	if (ptr->x == 1)

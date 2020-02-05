@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_funcs2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: camilla <camilla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 16:23:20 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/04 14:46:05 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/05 18:04:39 by camilla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,13 @@ char	*open_x(va_list args, t_args *ptr)
 	{
 		nb = va_arg(args, unsigned int);
 		if (nb == 0)
-			ptr->flag[0] = 0;
+			return (get = ft_strdup(""));
 		get = ft_uitoa_base(nb, 16);
 		get = base_string(get, ptr);
 	}
 	else
 		get = convert(args, ptr);
-	if (ptr->prec_w > (int)ft_strlen(get))
-		get = add_zeros(get, ptr->prec_w, ptr->neg);
-	if (ptr->w > (int)ft_strlen(get))
-		str = set_width(get, ptr, ptr->neg);
-	else
-		str = ft_strdup(get);
+	str = ft_strdup(get);
 	free(get);
 	return (str);
 }

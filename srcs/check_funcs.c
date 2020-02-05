@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_funcs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: camilla <camilla@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:15:20 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/04 14:19:53 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/05 20:26:42 by camilla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ int		check_modifier(char *trav, int i, t_args *ptr)
 {
 	char	*modifiers;
 	int		x;
-	int		ret;
+//	int		ret;
 
 	modifiers = "cspdiouxXf%";
 	x = 0;
-	ret = validate_modifier(trav, i, ptr);
-	while (modifiers[x] && ret == 1)
+//	ret = validate_modifier(trav, i, ptr);
+	while (modifiers[x] )
 	{
+		if (!(validate_modifier(trav, i, ptr)))
+			return (1);
 		if (modifiers[x] == trav[i])
 		{
 			ptr->start = i - 1;
@@ -32,6 +34,7 @@ int		check_modifier(char *trav, int i, t_args *ptr)
 			(trav[i] == 'X') ? ptr->mod -= 1 : 0;
 			(trav[i] == 'X') ? ptr->x = 1 : 0;
 			(trav[i] == 'f') ? ptr->mod -= 1 : 0;
+			printf("ptr->mod: %d\n", ptr->mod);
 			return (1);
 		}
 		x++;
