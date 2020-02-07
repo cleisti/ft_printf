@@ -73,11 +73,11 @@ char	*get_end(char *str, char *trav, t_args *ptr);
 
 t_args	*arguments_to_list(char *trav, t_args *start);
 t_args	*put_to_list(char *trav, int i, t_args *ptr);
-int		validate_modifier(char *trav, int i, t_args *ptr);
+void	set_valid_flags(t_args *ptr);
 void	initialize_t_args(t_args *ptr);
-
 void	free_list(t_args *ptr);
-//void	*error(void);
+
+int		validate_modifier(char *trav, int i, t_args *ptr);
 
 int		check_modifier(char *trav, int i, t_args *ptr);
 int		check_conversion(char *trav, int i, t_args *ptr);
@@ -85,9 +85,9 @@ int		check_precision(char *trav, int i, t_args *ptr);
 int		check_flags(char *trav, int i, t_args *ptr);
 int		check_width(char *trav, int i, t_args *ptr);
 
-char	*set_str(int w, char c);
+char	*set_str(t_args *ptr);
 char	*base_string(char *get, t_args *ptr);
-char	*plus_space(char *get, int plus, int space);
+char	*plus_space(char *get, t_args *ptr);
 char	*add_zeros(char *get, int len, int neg);
 char	*set_width(char *get, t_args *ptr, int neg);
 

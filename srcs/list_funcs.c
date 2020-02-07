@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: camilla <camilla@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:28:11 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/05 20:24:13 by camilla          ###   ########.fr       */
+/*   Updated: 2020/02/07 18:05:43 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,15 @@ void	initialize_t_args(t_args *ptr)
 	ptr->next = 0;
 }
 
-int		validate_modifier(char *trav, int i, t_args *ptr)
+void	set_valid_flags(t_args *ptr)
 {
-	char	*valids;
-	int		x;
-
-	valids = "cspdiouxXf%lhjtzqL. #0+-123456789";
-	x = 0;
-	while (valids[x])
+	if (ptr->mod < 3)
 	{
-		if (valids[x] == trav[i])
-			return (1);
-		x++;
+		ptr->flag[0] = -1;
+		ptr->flag[2] = -1;
+		ptr->flag[3] = -1;
+		ptr->flag[4] = -1;
 	}
-	if (x > 32 || trav[i] == '\0')
-	{
-		ptr->mod = 10;
-		ptr->end = i;
-	}
-	return (0);
 }
 
 t_args	*put_to_list(char *trav, int i, t_args *ptr)
@@ -74,7 +64,7 @@ t_args	*put_to_list(char *trav, int i, t_args *ptr)
 		ptr = ptr->next;
 		initialize_t_args(ptr);
 	}
-	while(trav[i] != '\0' && !(check_modifier(trav, i, ptr)))
+	while (trav[i] != '\0' && !(check_modifier(trav, i, ptr)))
 		i++;
 	while (ptr->mod != -1 && x <= i)
 	{
@@ -84,11 +74,7 @@ t_args	*put_to_list(char *trav, int i, t_args *ptr)
 		x = check_conversion(trav, x, ptr);
 		x++;
 	}
-//	if (ptr->mod == -1)
-//	{
-//		ptr->mod = 10;
-//		ptr->end = i;
-//	}
+	set_valid_flags(ptr);
 	return (ptr);
 }
 
