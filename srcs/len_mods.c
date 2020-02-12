@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 12:42:30 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/07 18:12:00 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/12 14:51:23 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*open_h(va_list args, t_args *ptr)
 	if (ptr->mod == 3)
 	{
 		sh = va_arg(args, int);
-		ptr->neg = (sh < 0 && (ptr->prec || ptr->flag[3]));
+		ptr->neg = (sh < 0) ? 1 : 0;
 		str = ft_itoa(sh);
 		return (str);
 	}
@@ -52,6 +52,7 @@ char	*open_hh(va_list args, t_args *ptr)
 	{
 		c = va_arg(args, int);
 		nb = c;
+		ptr->neg = (nb < 0) ? 1 : 0;
 		str = ft_itoa(nb);
 		return (str);
 	}
@@ -79,7 +80,7 @@ char	*open_l(va_list args, t_args *ptr)
 	if (ptr->mod == 3)
 	{
 		lo = va_arg(args, long);
-		ptr->neg = (lo < 0 && (ptr->prec || ptr->flag[3]));
+		ptr->neg = (lo < 0) ? 1 : 0;
 		str = ft_itoa(lo);
 		return (str);
 	}
@@ -108,7 +109,7 @@ char	*open_ll(va_list args, t_args *ptr)
 	if (ptr->mod == 3)
 	{
 		ll = va_arg(args, long long);
-		ptr->neg = (ll < 0 && (ptr->prec || ptr->flag[3]));
+		ptr->neg = (ll < 0) ? 1 : 0;
 		str = ft_itoa(ll);
 		return (str);
 	}

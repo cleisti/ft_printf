@@ -6,35 +6,65 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 16:23:20 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/07 18:30:17 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/12 16:46:14 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static char		*o_prec(char *get, int prec_w)
+{
+	char	*str;
+	int		dif;
+
+//	printf("prec_w: %d\n", prec_w);
+	str = ft_strnew(prec_w);
+	ft_memset(str, '0', prec_w);
+	dif = prec_w - ft_strlen(get);
+	ft_strcpy(str + dif, get);
+	free(get);
+	return (str);
+}
+
+static char		*o_width(char *get, int w, int left)
+{
+	char	*str;
+	int		dif;
+
+	str = ft_strnew(w);
+	ft_memset(str, ' ', w);
+	dif = w - ft_strlen(get);
+	if (left == 1)
+		ft_strncpy(str, get, ft_strlen(get));
+	else
+		ft_strcpy(str + dif, get);
+	free(get);
+	return (str);
+}
+
 char	*open_o(va_list args, t_args *ptr)
 {
 	long long	nb;
 	char		*str;
-	char		*get;
+	int			len;
 
 	if (ptr->len_mod == -1)
 	{
 		nb = va_arg(args, long long);
-		if (nb == 0 && ptr->flag[0] == -1 && ptr->prec_w <= 0 && ptr->w == 0)
-			return (get = ft_strdup(""));
-		get = ft_itoa_base(nb, 8);
-		if (nb == 0 && ptr->w > 0)
-			get = ft_strdup(" ");
-		get = base_string(get, ptr);
+		str = (nb == 0 && ptr->prec == 1 && ptr->prec_w < 1) ? ft_strdup("") : ft_itoa_base(nb, 8);
+//		printf("str: '%s'\n", str);
 	}
 	else
-	{
-		get = convert(args, ptr);
-		get = base_string(get, ptr);
-	}
-	str = ft_strdup(get);
-	free(get);
+		str = convert(args, ptr);
+	len = ft_strlen(str);
+	ptr->prec = (ptr->prec_w > len) ? 1 : 0;
+	if (ptr->prec == 1)
+		str = o_prec(str, ptr->prec_w);
+	len = ft_strlen(str);
+	if (ptr->w > len)
+		str = o_width(str, ptr->w, ptr->flag[1]);
+	if (ptr->flag[0] == 1 && str[0] != '0')
+		str = ft_strjoin("0", str);
 	return (str);
 }
 

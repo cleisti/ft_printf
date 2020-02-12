@@ -13,7 +13,7 @@
 NAME = libftprintf.a
 SRCS = srcs/ft_printf.c srcs/check_funcs.c srcs/list_funcs.c srcs/parse_args.c \
 	   srcs/open_funcs1.c srcs/open_funcs2.c srcs/refine_str.c srcs/helper_funcs.c \
-	   srcs/len_mods.c srcs/helper_funcs2.c
+	   srcs/len_mods.c srcs/helper_funcs2.c srcs/open_di.c
 OBJ = $(subst .c,.o,$(subst srcs/,,$(SRCS)))
 INCL = -I includes/ -I libft/includes/
 FLAGS = -Wall -Werror -Wextra

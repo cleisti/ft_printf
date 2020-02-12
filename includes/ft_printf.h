@@ -77,7 +77,7 @@ void	set_valid_flags(t_args *ptr);
 void	initialize_t_args(t_args *ptr);
 void	free_list(t_args *ptr);
 
-int		validate_modifier(char *trav, int i, t_args *ptr);
+int		validate_modifier(char *trav, int i);
 
 int		check_modifier(char *trav, int i, t_args *ptr);
 int		check_conversion(char *trav, int i, t_args *ptr);

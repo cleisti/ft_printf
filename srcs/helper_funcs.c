@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 17:38:37 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/07 17:54:23 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/10 16:26:29 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*set_str(t_args *ptr)
 		ft_memset(str, '0', ptr->w);
 	else
 		ft_memset(str, ' ', ptr->w);
-	ptr->w = (ptr->mod > 2) ? 0 : ptr->w;
+	ptr->w = (ptr->mod > 2 && ptr->flag[2] == -1) ? 0 : ptr->w;
+//	ptr->w = 0;
 	return (str);
 }
 
@@ -61,7 +62,8 @@ char	*plus_space(char *get, t_args *ptr)
 {
 	char *str;
 
-	if (ptr->w != 0)
+//	printf("ptr->w: %d | get: %zu\n", ptr->w, ft_strlen(get));
+	if (ptr->w < (int)ft_strlen(get))
 	{
 		str = ft_strnew(ft_strlen(get) + 1);
 		if (ptr->flag[2] == 1)
@@ -72,15 +74,15 @@ char	*plus_space(char *get, t_args *ptr)
 	}
 	else
 	{
-		str = ft_strnew(ft_strlen(get));
 		if (ptr->flag[2] == 1)
-			str[0] = '+';
+			get[0] = '+';
 		else if (ptr->flag[4] == 1)
-			str[0] = ' ';
-		ft_strcpy(str + 1, get + 1);
+			get[0] = ' ';
+	//	ft_strcpy(str + 1, get);
+		str = ft_strdup(get);
 	}
-	ptr->flag[2] = 0;
-	ptr->flag[4] = 0;
+//	ptr->flag[2] = 0;
+//	ptr->flag[4] = 0;
 	free(get);
 	return (str);
 }
@@ -106,8 +108,10 @@ char	*set_width(char *get, t_args *ptr, int neg)
 	int		len;
 	int		dif;
 
-	if ((ptr->flag[0] == 1 && ptr->mod == 6) || ptr->mod == 2)
-		ptr->w -= 2;
+	ptr->w = (ptr->flag[0] == 1 && ptr->mod == 6) ? ptr->w - 2 : ptr->w;
+//	printf("!!! get1: %s | ptr->flag[3]: %d | ptr->w: %d | ptr->mod: %d\n", get, ptr->flag[3], ptr->w, ptr->mod);
+//	if ((ptr->flag[0] == 1 && ptr->mod == 6) || ptr->mod == 2)
+//		ptr->w -= 2;
 	if (ptr->flag[0] == 1 && ptr->mod == 4)
 	{
 		get = ft_strjoin("0", get);
@@ -116,10 +120,12 @@ char	*set_width(char *get, t_args *ptr, int neg)
 	len = ft_strlen(get) - ptr->neg;
 	dif = ptr->w - ft_strlen(get) + ptr->neg;
 	str = set_str(ptr);
+//	printf("STR: %s | len: %d | ptr->w: %d\n", str, len, ptr->w);
 	if (neg == 1 && ptr->flag[1] == -1 && !(ptr->prec))
 		str[0] = '-';
 	else if (ptr->flag[2] == 1 || ptr->flag[4] == 1)
 		str = plus_space(str, ptr);
+//	printf("!!str: %s\n", str);
 	if (ptr->flag[1] == 1)
 		ft_strncpy(str, get + ptr->neg, len);
 	else

@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:15:20 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/07 18:03:03 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/12 12:33:40 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int		check_modifier(char *trav, int i, t_args *ptr)
 
 	modifiers = "cspdiouxXf%";
 	x = 0;
+	while (validate_modifier(trav, i))
+		i++;
 	while (modifiers[x])
 	{
-		if (!(validate_modifier(trav, i, ptr)))
-			return (1);
 		if (modifiers[x] == trav[i])
 		{
 			ptr->start = i - 1;
@@ -32,11 +32,13 @@ int		check_modifier(char *trav, int i, t_args *ptr)
 			(trav[i] == 'X') ? ptr->mod -= 1 : 0;
 			(trav[i] == 'X') ? ptr->x = 1 : 0;
 			(trav[i] == 'f') ? ptr->mod -= 1 : 0;
-			return (1);
+			return (i);
 		}
 		x++;
 	}
-	return (0);
+	ptr->mod = 10;
+	ptr->end = i;
+	return (i);
 }
 
 int		check_conversion(char *trav, int i, t_args *ptr)
@@ -98,10 +100,12 @@ int		check_flags(char *trav, int i, t_args *ptr)
 		}
 		x++;
 	}
-	if (ptr->flag[1] == 1)
-		ptr->flag[3] = -1;
-	if (ptr->flag[2] == 1)
-		ptr->flag[4] = -1;
+//	printf("FLAG3: %d\n", ptr->flag[3]);
+	if (ptr->flag[1] == 1 && ptr->flag[3] == 1)
+		ptr->flag[3] = 0;
+	if (ptr->flag[2] == 1 && ptr->flag[4] == 1)
+		ptr->flag[4] = 0;
+//	printf("ptr->flag[2]: %d\n", ptr->flag[2]);
 	return (i);
 }
 

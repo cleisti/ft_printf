@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:28:11 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/07 18:05:43 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/12 12:33:57 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,8 @@ t_args	*put_to_list(char *trav, int i, t_args *ptr)
 		ptr = ptr->next;
 		initialize_t_args(ptr);
 	}
-	while (trav[i] != '\0' && !(check_modifier(trav, i, ptr)))
-		i++;
-	while (ptr->mod != -1 && x <= i)
+	i = check_modifier(trav, i, ptr);
+	while (x <= i)
 	{
 		x = check_flags(trav, x, ptr);
 		x = check_width(trav, x, ptr);
@@ -74,6 +73,8 @@ t_args	*put_to_list(char *trav, int i, t_args *ptr)
 		x = check_conversion(trav, x, ptr);
 		x++;
 	}
+//	printf("end: %d | mod: %d", ptr->end, ptr->mod);
+//	printf("w: %d | 2: %d | 4: %d | 1: %d | 3: %d\n", ptr->w, ptr->flag[2], ptr->flag[4], ptr->flag[1], ptr->flag[3]);
 	set_valid_flags(ptr);
 	return (ptr);
 }
