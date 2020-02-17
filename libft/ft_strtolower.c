@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_funcs2.c                                      :+:      :+:    :+:   */
+/*   ft_strtolower.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 16:23:20 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/13 18:29:20 by cleisti          ###   ########.fr       */
+/*   Created: 2020/02/17 11:55:54 by cleisti           #+#    #+#             */
+/*   Updated: 2020/02/17 11:59:54 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-char	*open_f(va_list args, t_args *ptr)
+char	*ft_strtolower(char *str)
 {
-	long double	f;
-	char		*str;
+	int i;
 
-	if (ptr->len_mod == -1 || ptr->len_mod == 10)
+	i = 0;
+	while (str[i] != '\0')
 	{
-		f = va_arg(args, double);
-		str = ft_ftoa(f, ptr->prec_w);
+		if (ft_isupper(str[i]))
+			str[i] += 32;
+		i++;
 	}
-	else
-		str = convert(args, ptr);
-	if (ptr->w > (int)ft_strlen(str))
-		str = set_width(str, ptr, ptr->neg);
 	return (str);
 }

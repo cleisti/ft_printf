@@ -63,7 +63,7 @@ char	*open_ll(va_list args, t_args *ptr);
 char	*open_cl(va_list args, t_args *ptr);
 
 char	*convert(va_list args, t_args *ptr);
-char	*get_argument(va_list args, t_args *ptr, char *str);
+char	*get_argument(va_list args, t_args *ptr);
 int		parse_arguments(char *trav, va_list args, t_args *start);
 
 //char	*check_for_percentage_signs(char *str);

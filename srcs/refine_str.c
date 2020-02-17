@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 10:25:40 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/04 14:20:43 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/13 12:30:00 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	*get_middle(char *str, char *trav, t_args *ptr)
 	int		len;
 
 	i = ptr->end;
+//	printf("i: %d\n", i);
 	while (trav[i] != '%')
 		i++;
 	len = i - ptr->end;
@@ -41,6 +42,7 @@ char	*get_middle(char *str, char *trav, t_args *ptr)
 	united = ft_strjoin(str, temp);
 	free(str);
 	free(temp);
+//	printf("united: '%s'\n", united);
 	return (united);
 }
 

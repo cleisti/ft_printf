@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:33:13 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/12 17:59:02 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/17 11:10:22 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static char		*di_width(char *get, int w, int left)
 	return (str);
 }
 
-void			set_flags(t_args *ptr, int len)
+static void		set_flags(t_args *ptr, int len)
 {
 	if (ptr->flag[3] == 1)
 		ptr->flag[3] = ((ptr->prec == 1 && ptr->prec_w < len) || ptr->w <= len) ? 0 : 1;

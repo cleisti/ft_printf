@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 12:38:51 by cleisti           #+#    #+#             */
-/*   Updated: 2019/11/09 15:05:49 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/13 15:06:39 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t		ft_strlen(const char *str)
 	size_t i;
 
 	i = 0;
+	if (!(str))
+		return ('\0');
 	while (str[i] != '\0')
 		i++;
 	return (i);

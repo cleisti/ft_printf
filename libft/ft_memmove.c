@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 17:51:48 by cleisti           #+#    #+#             */
-/*   Updated: 2019/11/07 11:11:41 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/17 11:39:36 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		return (dst);
 	if (dst < src)
 	{
+		printf("lol\n");
 		ft_memcpy(dst, src, len);
 		return (dst);
 	}

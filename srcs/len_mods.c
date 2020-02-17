@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 12:42:30 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/12 14:51:23 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/17 11:22:10 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	*open_h(va_list args, t_args *ptr)
 			str = ft_uitoa_base(us, 8);
 		else
 			str = ft_uitoa_base(us, 16);
-		str = base_string(str, ptr);
 		return (str);
 	}
 }
@@ -67,7 +66,7 @@ char	*open_hh(va_list args, t_args *ptr)
 			str = ft_uitoa_base(uc, 8);
 		else
 			str = ft_uitoa_base(nb, 16);
-		return (base_string(str, ptr));
+		return (str);
 	}
 }
 
@@ -95,7 +94,7 @@ char	*open_l(va_list args, t_args *ptr)
 			str = ft_uitoa_base(ul, 8);
 		else
 			str = ft_uitoa_base(ul, 16);
-		str = base_string(str, ptr);
+//		printf("STR:: '%s'\n", str);
 		return (str);
 	}
 }
@@ -116,15 +115,14 @@ char	*open_ll(va_list args, t_args *ptr)
 	else
 	{
 		ull = va_arg(args, unsigned long long);
-		if (ull == 0)
-			ptr->flag[0] = 0;
+		ptr->flag[0] = (ull != 0 && ptr->flag[0] == 1) ? 1 : 0;
 		if (ptr->mod == 5)
 			str = ft_uitoa_base(ull, 10);
 		else if (ptr->mod == 4)
 			str = ft_uitoa_base(ull, 8);
 		else
 			str = ft_uitoa_base(ull, 16);
-		str = base_string(str, ptr);
+//		printf("STR:: '%s'\n", str);
 		return (str);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 16:06:34 by cleisti           #+#    #+#             */
-/*   Updated: 2019/11/06 12:02:02 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/13 14:30:48 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ void	*ft_memalloc(size_t size)
 {
 	void *str;
 
-	str = malloc(size);
-	if (!(str))
+	if (!(str = malloc(size)))
 		return (NULL);
 	ft_bzero(str, size);
 	return (str);

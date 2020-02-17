@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 17:53:15 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/04 12:45:45 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/13 15:06:58 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int		print_string(char *str)
 	int len;
 
 	len = ft_strlen(str);
-	ft_putstr(str);
+	if (str != '\0')
+		ft_putstr(str);
 	free(str);
 	return (len);
 }

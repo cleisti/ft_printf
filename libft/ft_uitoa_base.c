@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 11:35:12 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/31 16:18:10 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/13 14:32:10 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ char		*ft_uitoa_base(unsigned long long value, int base)
 	if (base < 2 || base > 16)
 		return (NULL);
 	size = count_len(value, base);
-	if (!(str = ft_strnew(sizeof(size + 1))))
-		return (NULL);
+	str = ft_strnew(size);
 	str[size] = '\0';
 	size--;
 	if (value == 0)

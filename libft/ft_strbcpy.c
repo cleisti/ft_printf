@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_funcs2.c                                      :+:      :+:    :+:   */
+/*   ft_strbcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 16:23:20 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/13 18:29:20 by cleisti          ###   ########.fr       */
+/*   Created: 2020/02/17 11:44:10 by cleisti           #+#    #+#             */
+/*   Updated: 2020/02/17 11:49:41 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-char	*open_f(va_list args, t_args *ptr)
+char	*ft_strbcpy(char *dst, const char *src)
 {
-	long double	f;
-	char		*str;
+	int		len;
+	int		i;
 
-	if (ptr->len_mod == -1 || ptr->len_mod == 10)
+	len = ft_strlen(dst);
+	i = ft_strlen(src);
+	while (len && i)
 	{
-		f = va_arg(args, double);
-		str = ft_ftoa(f, ptr->prec_w);
+		dst[len - 1] = src[i - 1];
+		len--;
+		i--;
 	}
-	else
-		str = convert(args, ptr);
-	if (ptr->w > (int)ft_strlen(str))
-		str = set_width(str, ptr, ptr->neg);
-	return (str);
+	return (dst);
 }

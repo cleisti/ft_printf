@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 12:58:10 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/31 11:56:24 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/17 11:56:39 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,8 @@ int					ft_islower(int c);
 int					ft_isupper(int c);
 void				*ft_realloc(void *ptr, size_t size, size_t old);
 char				*ft_strndup(const char *s1, size_t n);
+char				*ft_strbcpy(char *dst, const char *src);
+char				*ft_strtolower(char *str);
+char				*ft_strtoupper(char *str);
 
 #endif
