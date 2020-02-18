@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:39:01 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/17 16:56:32 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/18 17:19:33 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,19 @@ static char		*o_prec(char *get, t_args *ptr)
 	ft_strcpy(str + dif, get);
 	free(get);
 	ptr->flag[3] = 0;
+	ptr->flag[0] = 0;
 	return (str);
 }
 
-static char		*o_zero(char *get, int w)
+static char		*o_zero(char *get, t_args *ptr)
 {
 	char	*str;
 
-	str = ft_strnew(w);
-	ft_memset(str, '0', w);
+	str = ft_strnew(ptr->w);
+	ft_memset(str, '0', ptr->w);
 	ft_strbcpy(str, get);
 	free(get);
+	ptr->flag[0] = 0;
 	return (str);
 }
 
@@ -62,6 +64,23 @@ static void		set_flags(t_args *ptr, int len)
 	ptr->prec = (ptr->prec_w > len) ? 1 : 0;
 }
 
+static char		*nb_to_string(long long nb, t_args *ptr)
+{
+	char	*str;
+	
+	if (nb == 0 && ptr->prec == 1 && ptr->prec_w < 1 && ptr->flag[0] == -1)
+		str = ft_strdup("");
+	else
+		str = ft_itoa_base(nb, 8);
+	if (nb == 0 && ptr->flag[0] == 1 && ptr->prec_w < 1)
+	{
+			ptr->prec_w = ft_strlen(str) + 1;
+			ptr->flag[0] = 0;
+			ptr->flag[3] = 1;
+	}
+	return (str);
+}
+
 char			*open_o(va_list args, t_args *ptr)
 {
 	long long	nb;
@@ -71,8 +90,7 @@ char			*open_o(va_list args, t_args *ptr)
 	if (ptr->len_mod == -1)
 	{
 		nb = va_arg(args, long long);
-		ptr->flag[0] = (nb == 0) ? 0 : ptr->flag[0];
-		str = (nb == 0 && ptr->prec == 1 && ptr->prec_w < 1) ? ft_strdup("") : ft_itoa_base(nb, 8);
+		str = nb_to_string(nb, ptr);
 //		printf("str: '%s'\n", str);
 	}
 	else
@@ -84,11 +102,11 @@ char			*open_o(va_list args, t_args *ptr)
 		str = o_prec(str, ptr);
 	len = ft_strlen(str);
 	if (ptr->w > len && ptr->flag[3] == 1)
-		str = o_zero(str, ptr->w);
+		str = o_zero(str, ptr);
+//	if (ptr->flag[0] == 1 && str[0] != '0')
+//		str = ft_strjoin("0", str);
 	len = ft_strlen(str);
 	if (ptr->w > len)
 		str = o_width(str, ptr);
-	if (ptr->flag[0] == 1 && str[0] != '0')
-		str = ft_strjoin("0", str);
 	return (str);
 }

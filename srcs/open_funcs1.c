@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 10:28:16 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/12 16:58:13 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/18 16:57:17 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ char	*open_c(va_list args, t_args *ptr)
 
 	if (!(c = va_arg(args, int)))
 		ptr->null = 1;
+	if (!(c))
+		ptr->w -= 1;
 	str = (ptr->w > 1) ? ft_strnew(ptr->w) : ft_strnew(1);
 	if (ptr->w > 1)
 		ft_memset(str, ' ', ptr->w);
-	if (ptr->flag[1] == 1 || ptr->w <= 1)
+//	printf("str: '%s'\n", str);
+	if (c && (ptr->flag[1] == 1 || ptr->w <= 1))
 		str[0] = c;
-	else
+	else if (c)
 		str[ptr->w - 1] = c;
 	return (str);
 }

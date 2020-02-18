@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:15:20 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/13 15:06:42 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/18 15:33:16 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ int		check_precision(char *trav, int i, t_args *ptr)
 		while (ft_isdigit(trav[i]))
 			i++;
 	}
-	if (ptr->mod == 7 && ptr->prec_w == -1)
-		ptr->prec_w = 6;
+//	if (ptr->mod == 7 && ptr->prec_w == -1)
+//		ptr->prec_w = 6;
 	return (i);
 }
 

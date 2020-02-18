@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 12:42:30 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/17 11:22:10 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/18 15:01:20 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,14 +125,4 @@ char	*open_ll(va_list args, t_args *ptr)
 //		printf("STR:: '%s'\n", str);
 		return (str);
 	}
-}
-
-char	*open_cl(va_list args, t_args *ptr)
-{
-	char		*get;
-	long double	ld;
-
-	ld = va_arg(args, long double);
-	get = ft_ftoa(ld, ptr->prec_w);
-	return (get);
 }
