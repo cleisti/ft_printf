@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:15:20 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/18 15:33:16 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/19 11:59:22 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,21 @@ int		check_conversion(char *trav, int i, t_args *ptr)
 		(trav[i] == 'l' && trav[i + 1] == 'l'))
 	{
 		if (trav[i + 1] == 'h')
-			ptr->len_mod = 9;
+			ptr->len_mod = 1;
 		else
-			ptr->len_mod = 11;
+			ptr->len_mod = 3;
 		return (i + 2);
 	}
 	else if (trav[i] == 'h' || trav[i] == 'l')
 	{
 		if (trav[i] == 'h')
-			ptr->len_mod = 8;
+			ptr->len_mod = 0;
 		else
-			ptr->len_mod = 10;
+			ptr->len_mod = 2;
 		return (i + 1);
 	}
 	else if (ptr->mod == 7 && trav[i] == 'L')
-		ptr->len_mod = 12;
+		ptr->len_mod = 4;
 	return (i);
 }
 

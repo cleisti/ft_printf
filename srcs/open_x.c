@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 17:32:25 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/17 11:57:30 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/19 11:52:20 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void		set_flags(t_args *ptr, int len)
 	
 }
 
-char			*open_x(va_list args, t_args *ptr)
+int			open_x(va_list args, t_args *ptr)
 {
 	unsigned long long	ull;
 	char				*str;
@@ -97,5 +97,5 @@ char			*open_x(va_list args, t_args *ptr)
 		str = x_width(str, ptr->w, ptr->flag[1]);
 	if (ptr->x)
 		str = ft_strtoupper(str);
-	return (str);
+	return (print_string(str));
 }

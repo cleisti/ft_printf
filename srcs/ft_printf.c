@@ -6,16 +6,41 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 17:53:15 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/13 15:06:58 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/19 11:49:03 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+int		*find_index(t_args *ptr)
+{
+	int		*arr;
+	int		i;
+
+	printf("ptr->null: %d\n", ptr->null);
+	arr = NULL;
+	i = 0;
+	while (ptr)
+	{
+		if (ptr->null != -1)
+		{
+			arr[i] = ptr->null;
+			i++;
+		}
+		ptr = ptr->next;
+	}
+	return (arr);
+}
+
+void 	ft_putstrui(const char *str, int i)
+{
+	write(1, str, i);
+}
+
 int		print_string(char *str)
 {
-	int len;
-
+	int		len;
+	
 	len = ft_strlen(str);
 	if (str != '\0')
 		ft_putstr(str);
@@ -32,7 +57,10 @@ int		parse_format_str(va_list args, char *trav)
 		return (0);
 	start = arguments_to_list(trav, start);
 	if (start->str)
-		len = print_string(ft_strdup(trav));
+	{
+		ft_putstr(trav);
+		len = ft_strlen(trav);
+	}
 	else
 		len = parse_arguments(trav, args, start);
 	return (len);

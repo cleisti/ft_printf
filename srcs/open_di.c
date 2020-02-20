@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:33:13 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/17 11:10:22 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/19 12:02:59 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void		set_flags(t_args *ptr, int len)
 	ptr->prec = (ptr->prec_w > len) ? 1 : 0;
 }
 
-char			*open_di(va_list args, t_args *ptr)
+int			open_di(va_list args, t_args *ptr)
 {
 	char	*str;
 	int		nb;
@@ -110,5 +110,5 @@ char			*open_di(va_list args, t_args *ptr)
 	len = ft_strlen(str);
 	if (ptr->w > len)
 		str = di_width(str, ptr->w, ptr->flag[1]);
-	return (str);
+	return (print_string(str));
 }

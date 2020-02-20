@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:39:01 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/18 17:19:33 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/20 10:29:41 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ static void		set_flags(t_args *ptr, int len)
 {
 	if (ptr->flag[3] == 1)
 		ptr->flag[3] = (ptr->flag[3] == 1 && ptr->prec == 0) ? 1 : 0;
+	if ((ptr->flag[0] == 1 && ptr->prec_w <= len && ptr->flag[3] != 1) ||
+		(ptr->flag[0] == 1 && ptr->flag[3] == 1 && ptr->w <= len))
+		ptr->prec_w = len + 1;
 	ptr->prec = (ptr->prec_w > len) ? 1 : 0;
 }
 
@@ -68,20 +71,24 @@ static char		*nb_to_string(long long nb, t_args *ptr)
 {
 	char	*str;
 	
-	if (nb == 0 && ptr->prec == 1 && ptr->prec_w < 1 && ptr->flag[0] == -1)
+	if (nb == 0 && ptr->prec == 1 && ptr->prec_w < 1)
 		str = ft_strdup("");
 	else
-		str = ft_itoa_base(nb, 8);
-	if (nb == 0 && ptr->flag[0] == 1 && ptr->prec_w < 1)
 	{
-			ptr->prec_w = ft_strlen(str) + 1;
+		str = ft_itoa_base(nb, 8);
+		if (nb == 0 && ptr->flag[0] == 1)
 			ptr->flag[0] = 0;
-			ptr->flag[3] = 1;
 	}
+//	if (nb == 0 && ptr->flag[0] == 1 && ptr->prec_w < 1)
+//	{
+//			ptr->prec_w = ft_strlen(str) + 1;
+//			ptr->flag[0] = 0;
+//			ptr->flag[3] = 1;
+//	}
 	return (str);
 }
 
-char			*open_o(va_list args, t_args *ptr)
+int			open_o(va_list args, t_args *ptr)
 {
 	long long	nb;
 	char		*str;
@@ -96,8 +103,9 @@ char			*open_o(va_list args, t_args *ptr)
 	else
 		str = convert(args, ptr);
 	len = ft_strlen(str);
-//	printf("str: '%s' | len: %d | w: %d | 2: %d | 4: %d | 1: %d | 3: %d\n", str, len, ptr->w, ptr->flag[2], ptr->flag[4], ptr->flag[1], ptr->flag[3]);
+//	printf("str: '%s' | len: %d | w: %d | 2: %d | 4: %d | 1: %d | 3: %d | 0: %d | prec: %d | prec_w: %d\n", str, len, ptr->w, ptr->flag[2], ptr->flag[4], ptr->flag[1], ptr->flag[3], ptr->flag[0], ptr->prec, ptr->prec_w);
 	set_flags(ptr, len);
+//	printf("str: '%s' | len: %d | w: %d | 2: %d | 4: %d | 1: %d | 3: %d | 0: %d | prec: %d | prec_w: %d\n", str, len, ptr->w, ptr->flag[2], ptr->flag[4], ptr->flag[1], ptr->flag[3], ptr->flag[0], ptr->prec, ptr->prec_w);
 	if (ptr->prec == 1)
 		str = o_prec(str, ptr);
 	len = ft_strlen(str);
@@ -108,5 +116,5 @@ char			*open_o(va_list args, t_args *ptr)
 	len = ft_strlen(str);
 	if (ptr->w > len)
 		str = o_width(str, ptr);
-	return (str);
+	return (print_string(str));
 }

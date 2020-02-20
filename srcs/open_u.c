@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:49:25 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/17 16:36:38 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/19 12:03:18 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char		*u_width(char *get, int w, int left)
 	return (str);
 }
 
-char	*open_u(va_list args, t_args *ptr)
+int				open_u(va_list args, t_args *ptr)
 {
 	unsigned long long	u;
 	char				*str;
@@ -80,5 +80,5 @@ char	*open_u(va_list args, t_args *ptr)
 	if (ptr->w > len)
 		str = u_width(str, ptr->w, ptr->flag[1]);
 //	printf("STR3:: '%s'\n", str);
-	return (str);
+	return (print_string(str));
 }

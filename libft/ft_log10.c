@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_funcs.c                                        :+:      :+:    :+:   */
+/*   ft_log10.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/10 13:36:19 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/10 13:46:16 by cleisti          ###   ########.fr       */
+/*   Created: 2020/02/20 15:09:00 by cleisti           #+#    #+#             */
+/*   Updated: 2020/02/20 15:15:24 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-char	*only_width(char *str, t_args *ptr)
+long double		ft_log10(long double num, int div)
 {
-	char *new;
-
-	new = ft_strnew(ptr->w);
-	new = 
-	new = (ptr->flag[1] == 1) ? ft_strcpy(new, get)
+	while (div)
+	{
+		num /= 10;
+		div--;
+	}
+	return (num);
 }

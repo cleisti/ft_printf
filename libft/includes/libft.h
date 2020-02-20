@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 12:58:10 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/17 11:56:39 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/20 15:15:40 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_atoi(const char *str);
 int					ft_atoi_base(const char *str, int str_base);
 long long			ft_pow(int num, int topow);
+long double			ft_log10(long double num, int div);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 int					ft_isprint(int c);

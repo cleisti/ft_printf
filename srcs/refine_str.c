@@ -6,29 +6,32 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 10:25:40 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/13 12:30:00 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/19 14:07:37 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*get_end(char *str, char *trav, t_args *ptr)
+int		get_end(char *trav, t_args *ptr)
 {
-	char	*united;
+//	char	*united;
 	char	*temp;
 	int		len;
+	int		i;
 
 	len = ft_strlen(trav) - ptr->end;
 	temp = ft_strndup(trav + ptr->end, len);
-	united = ft_strjoin(str, temp);
-	free(str);
+	ft_putstr(temp);
+	i = ft_strlen(temp);
+//	united = ft_strjoin(str, temp);
+//	free(str);
 	free(temp);
-	return (united);
+	return (i);
 }
 
-char	*get_middle(char *str, char *trav, t_args *ptr)
+int		get_middle(char *trav, t_args *ptr)
 {
-	char	*united;
+//	char	*united;
 	char	*temp;
 	int		i;
 	int		len;
@@ -39,37 +42,27 @@ char	*get_middle(char *str, char *trav, t_args *ptr)
 		i++;
 	len = i - ptr->end;
 	temp = ft_strndup(trav + ptr->end, len);
-	united = ft_strjoin(str, temp);
-	free(str);
+	ft_putstr(temp);
+	i = ft_strlen(temp);
+//	united = ft_strjoin(str, temp);
+//	free(str);
 	free(temp);
 //	printf("united: '%s'\n", united);
-	return (united);
+	return (i);
 }
 
-char	*remove_percentage(char *str, int i)
+int		validate_modifier(char *trav, int i)
 {
-	char *new;
-	char *temp;
+	char	*valids;
+	int		x;
 
-	new = ft_strnew(ft_strlen(str) - 1);
-	temp = ft_strdup(str + i + 1);
-	ft_strncpy(new, str, i);
-	new = ft_strjoin(new, temp);
-	free(temp);
-	free(str);
-	return (new);
-}
-
-char	*check_for_percentage_signs(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
+	valids = "lhjtzqL. #0+-*123456789";
+	x = 0;
+	while (valids[x])
 	{
-		if (str[i] == '%' && str[i + 1] == '%')
-			str = remove_percentage(str, i);
-		i++;
+		if (valids[x] == trav[i])
+			return (1);
+		x++;
 	}
-	return (str);
+	return (0);
 }
