@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:28:26 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/18 17:07:09 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/20 15:27:42 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,10 +219,14 @@ int		main(void)
 	printf("rl %%-5c: '%-5c'\n", 'a');
 	ft_printf("ft %%-5c: '%-5c'\n\n", 'a');
 
-	char *str = "Hello World";
-	char c = 'b';
-
- 	printf("'%-15s' | '%15c'\n", str, c);
+ 	printf("%%15.3s : '%15s'\n", NULL);
+	ft_printf("%%15.3s : '%15s'\n", NULL);
+	printf("%%.03s : '%.03s'\n", NULL);
+	ft_printf("%%.03s : '%.03s'\n", NULL);
+	printf("%%9.1s : '%9.1s'\n", NULL);
+	ft_printf("%%9.1s : '%9.1s'\n", NULL);
+	
+	printf("'%-15s' | '%15c'\n", str, c);
 	ft_printf("'%-15s' | '%15c'\n", str, c);
  	printf("'%-s' | '%15c'\n", str, c);
 	ft_printf("'%-s' | '%15c'\n", str, c);
@@ -247,9 +251,15 @@ int		main(void)
 	printf("%%.2s 'hello' %%.7 'world': '%.2s%.7s'\n", "hello", "world"); //heworld
 	ft_printf("%%.2s 'hello' %%.7 'world': '%.2s%.7s'\n", "hello", "world"); //heworld
 	printf("%%3.3s%%7.7s 'hello' 'world': %3.3s%7.7s\n", "hello", "world");
-	ft_printf("%%3.3s%%7.7s 'hello' 'world': %3.3s%7.7s\n\n", "hello", "world");
+	ft_printf("%%3.3s%%7.7s 'hello' 'world': %3.3s%7.7s\n", "hello", "world");
+	printf("%%.s '%.s'\n", "NULL");
+	ft_printf("%%.s '%.s'\n", "NULL");
+	printf("%%.03s : '%.03s'\n", "hi low");
+	ft_printf("%%.03s : '%.03s'\n", "hi low");
 	
-	
+
+	char *str = "Hello World";
+	char c = 'b';
 
 	printf("%%p null: '%p'\n", NULL);
 	ft_printf("%%p null: '%p'\n", NULL);
@@ -297,7 +307,11 @@ int		main(void)
 	ft_printf("%%-20p str: '%-20p'\n", str);
 	printf("%%-20p str: '%-20p'\n", str);
 	ft_printf("%%-20p str: '%-20p'\n\n", str);
-*/ /*
+	int a01 = 1;
+	int a02 = 2;
+	printf("'%-70p''%-70p'\n", &a01, &a02);
+	ft_printf("'%-70p''%-70p'\n", &a01, &a02);
+/*
 	printf("%%07i -54: '%07i'\n", -54);
 	ft_printf("%%07i -54: '%07i'\n", -54);
 	printf("%%08.5i 34: '%08.5i'\n", 34);
@@ -545,7 +559,7 @@ int		main(void)
 	ft_printf("%%-+20.10lld -2110: '%-+20.10lld'\n", (long long)-2110);
 	printf("%%- +20.10lld -2110: '%-+20.10lld'\n", (long long)-2110);
 	ft_printf("%%- +20.10lld -2110: '%-+20.10lld'\n\n", (long long)-2110);
-*/
+
 	printf("%%o 1234567: '%o'\n", 1234567);
 	ft_printf("%%o 1234567: '%o'\n", 1234567);
 	printf("%%o -1234567: '%o'\n", -1234567);
@@ -567,9 +581,9 @@ int		main(void)
 	printf("%%#.20o 1234567: '%#.20o'\n", 1234567);
 	ft_printf("%%#.20o 1234567: '%#.20o'\n", 1234567);
 	printf("%%.5o 1234567: '%.5o'\n", 1234567);
-	ft_printf("%%.5o 1234567: '%.5o'\n", 1234567);
+	ft_printf("%%.5o 1234567: '%.5o'\n\n", 1234567);
 	printf("%%#.5o 1234567: '%#.5o'\n", 1234567);
-	ft_printf("%%#.5o 1234567: '%#.5o'\n", 1234567);
+	ft_printf("%%#.5o 1234567: '%#.5o'\n\n", 1234567);
 	printf("%%10o -1234567: '%10o'\n", -1234567);
 	ft_printf("%%10o -1234567: '%10o'\n", -1234567);
 	printf("%%10.5o -1234567: '%10.5o'\n", -1234567);
@@ -618,7 +632,16 @@ int		main(void)
 	ft_printf("%%#7o 33: '%#7o'\n", 33);
 	printf("%%#8.3o 8375: '%#8.3o'\n", 8375);
 	ft_printf("%%#8.3o 8375: '%#8.3o'\n", 8375);
+	printf("%%#05o 43: '%#05o'\n", 43);
+	ft_printf("%%#05o 43: '%#05o'\n", 43);
+	printf("%%#037lo : '%#037lo'\n", 22337203685477ul);
+	ft_printf("%%#037lo : '%#037lo'\n", 22337203685477ul);
+	printf("%%#07o 698334: '%#07o'\n", 698334);
+	ft_printf("%%#07o 698334: '%#07o'\n", 698334);
+	printf("%%07o 698334: '%07o'\n", 698334);
+	ft_printf("%%07o 698334: '%07o'\n", 698334);
 
+*/
 	printf("\n%%f 1.0: '%f'\n", 1.0);
 	ft_printf("%%f 1.0: '%f'\n", 1.0);
 	printf("%%f 1.1: '%f'\n", 1.1);
@@ -639,10 +662,61 @@ int		main(void)
 	ft_printf("%%7.3f 1.1: '%7.3f'\n\n", 1.1);
 	printf("%%f: '%f'\n", 573.924);
 	ft_printf("%%f: '%f'\n", 573.924);
-	
+	printf("%%f 573.924: '%f'\n", 573.924);
+	ft_printf("%%f 573.924: '%f'\n", 573.924);
+	printf("%%f 23.00042: '%f'\n", 23.00041); 
+	ft_printf("%%f 23.00042: '%f'\n", 23.00041);
+	printf("%%f 0.000039: '%f'\n", 0.000039);
+	ft_printf("%%f 0.000039: '%f'\n", 0.000039);
+	printf("%%f -7.00036: '%f'\n", -7.00036);
+	ft_printf("%%f -7.00036: '%f'\n", -7.00036);
+	printf("%%f -0.000001: '%f'\n", -0.000001);
+	ft_printf("%%f -0.000001: '%f'\n", -0.000001);
+	printf("%%f 9873.000001: '%f'\n", 9873.000001);
+	ft_printf("%%f 9873.000001: '%f'\n", 9873.000001);
+	printf("%%f 3.9999999: '%f'\n", 3.9999999);
+	ft_printf("%%f 3.9999999: '%f'\n", 3.9999999);
+	printf("%%f -5.9999999: '%f'\n", -5.9999999);
+	ft_printf("%%f -5.9999999: '%f'\n", -5.9999999);
+	printf("%%.5f -5.9999918: '%.5f'\n", -5.9999951);
+	ft_printf("%%.5f -5.9999918: '%.5f'\n", -5.9999951);
+	printf("this '%.0f' float\n", 1.6);
+	ft_printf("this '%.0f' float\n", 1.6);
+	printf("%%.0f -3.85: '%.0f'\n", -3.85);
+	ft_printf("%%.0f -3.85: '%.0f'\n", -3.85);
+	printf("%%.0f 573.924: '%.0f'\n", 573.924);
+	ft_printf("%%.0f 573.924: '%.0f'\n", 573.924);
+	printf("this '%f' float\n", 1.5);
+	ft_printf("this '%f' float\n", 1.5);
+	printf("%%f 7.5: '%f'\n", 7.5);
+	ft_printf("%%f 7.5: '%f'\n", 7.5);
+	printf("%%f -3.8: '%f'\n", -3.8);
+	ft_printf("%%f -3.8: '%f'\n", -3.8);
+	printf("%%f 999.999999: '%f'\n", 999.999999);
+	ft_printf("%%f 999.999999: '%f'\n", 999.999999);
+	printf("%%f -999.999999: '%f'\n", -999.999999);
+	ft_printf("%%f -999.999999: '%f'\n", -999.999999);
+	printf("%%f 0.999999: '%f'\n", 0.999999);
+	ft_printf("%%f 0.999999: '%f'\n", 0.999999);
+	printf("%%f -0.999999: '%f'\n", -0.999999);
+	ft_printf("%%f -0.999999: '%f'\n", -0.999999);
+	printf("%%f -985.765426499: '%f'\n", -985.765426499);
+	ft_printf("%%f -985.765426499: '%f'\n", -985.765426499);
+	printf("%%f 1.99999949: '%f'\n", 1.99999949);
+	ft_printf("%%f 1.99999949: '%f'\n", 1.99999949);
+	printf("%%f 0.0894255: '%f'\n", 0.0894255);
+	ft_printf("%%f 0.0894255: '%f'\n", 0.0894255);
+	printf("%%f 43.4399999: '%f'\n", 43.4399999);
+	ft_printf("%%f 43.4399999: '%f'\n", 43.4399999);
+/*
+	printf("'%5%'\n");
+	ft_printf("'%5%'\n");
+	printf("'%05%'\n");
+	ft_printf("'%05%'\n");
+/*
 	printf("%%-5c null: '%-5c'\n", '\0');
 	ft_printf("%%-5c null: '%-5c'\n", '\0');
-/*
+
 	printf("%%llu max: '%llu'\n", 9223372036854775807);
 	ft_printf("%%llu max: '%llu'\n", 9223372036854775807);
 	printf("%%lu max: '%lu'\n", 9223372036854775807);
