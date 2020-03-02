@@ -6,7 +6,7 @@
 #    By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/25 19:42:12 by cleisti           #+#    #+#              #
-#    Updated: 2020/02/20 15:14:54 by cleisti          ###   ########.fr        #
+#    Updated: 2020/02/23 17:52:25 by cleisti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c 
 	   ft_strmapi.c ft_strsub.c ft_strjoin.c ft_strtrim.c ft_strsplit.c ft_strrev.c ft_isspace.c \
 	   ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_lstappend.c \
 	   ft_isupper.c ft_islower.c ft_realloc.c ft_strndup.c ft_itoa_base.c ft_atoi_base.c ft_uitoa_base.c \
-	   ft_ftoa.c ft_pow.c ft_strbcpy.c ft_strtoupper.c ft_strtolower.c ft_log10.c
+	   ft_ftoa.c ft_pow.c ft_strbcpy.c ft_strtoupper.c ft_strtolower.c ft_log10.c ft_numlen.c
 OBJ = $(subst .c,.o,$(SRCS))
 INCL = includes/
 FLAGS = -Wall -Wextra -Werror

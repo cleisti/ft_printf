@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:15:20 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/19 11:59:22 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/24 17:11:15 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		check_conversion(char *trav, int i, t_args *ptr)
 		if (trav[i + 1] == 'h')
 			ptr->len_mod = 1;
 		else
-			ptr->len_mod = 3;
+			ptr->len_mod = 2;
 		return (i + 2);
 	}
 	else if (trav[i] == 'h' || trav[i] == 'l')
@@ -57,7 +57,7 @@ int		check_conversion(char *trav, int i, t_args *ptr)
 		if (trav[i] == 'h')
 			ptr->len_mod = 0;
 		else
-			ptr->len_mod = 2;
+			ptr->len_mod = 3;
 		return (i + 1);
 	}
 	else if (ptr->mod == 7 && trav[i] == 'L')
@@ -67,16 +67,16 @@ int		check_conversion(char *trav, int i, t_args *ptr)
 
 int		check_precision(char *trav, int i, t_args *ptr)
 {
+	if (ft_isalpha(trav[i]))
+		i = check_conversion(trav, i, ptr);
 	if (trav[i] == '.')
 	{
 		ptr->prec = 1;
-		ptr->prec_w = ft_atoi(&trav[i + 1]);
 		i += 1;
+		ptr->prec_w = ft_atoi(&trav[i]);
 		while (ft_isdigit(trav[i]))
 			i++;
 	}
-//	if (ptr->mod == 7 && ptr->prec_w == -1)
-//		ptr->prec_w = 6;
 	return (i);
 }
 
@@ -91,21 +91,19 @@ int		check_flags(char *trav, int i, t_args *ptr)
 	{
 		if (trav[i] == flags_arr[x])
 		{
-			if (ptr->flag[x] == -1)
+			if (ptr->flag[x] == 0)
 			{
 				ptr->flag[x] = 1;
-				i += 1;
+				i++;
+				if (trav[i] != '0')
+					i = check_width(trav, i, ptr);
 				return (check_flags(trav, i, ptr));
 			}
 		}
+		else if (trav[i] != '0' && ft_isdigit(trav[i]))
+			i = check_width(trav, i, ptr);
 		x++;
 	}
-//	printf("FLAG3: %d\n", ptr->flag[3]);
-	if (ptr->flag[1] == 1 && ptr->flag[3] == 1)
-		ptr->flag[3] = 0;
-	if (ptr->flag[2] == 1 && ptr->flag[4] == 1)
-		ptr->flag[4] = 0;
-//	printf("ptr->flag[2]: %d\n", ptr->flag[2]);
 	return (i);
 }
 

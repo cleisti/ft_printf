@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/25 23:06:23 by marvin            #+#    #+#             */
-/*   Updated: 2019/12/25 23:06:23 by marvin           ###   ########.fr       */
+/*   Created: 2020/02/24 16:08:30 by cleisti           #+#    #+#             */
+/*   Updated: 2020/02/24 17:48:44 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # include "libft.h"
 # include <unistd.h>
 # include <stdarg.h>
-# include <stdio.h>
-
-// con -> len_mod | len_mod ->prec_w
 
 typedef struct			s_args
 {
@@ -31,7 +28,6 @@ typedef struct			s_args
 	int					neg;
 	int					x;
 	int					len;
-	int					null;
 	int					rm_p;
 	int					str;
 	int					start;
@@ -39,49 +35,45 @@ typedef struct			s_args
 	struct s_args		*next;
 }						t_args;
 
-typedef int (*func_ptr)(va_list, t_args *);
-typedef char *(*len_mod)(va_list, t_args *);
+typedef int				(*t_func_ptr)(va_list args, t_args *ptr);
+typedef char			*(*t_len_mod)(va_list args, t_args *ptr);
 
-int		ft_printf(const char *format, ...);
-int		parse_format_str(va_list args, char *trav);
-int		print_string(char *str);
-void 	ft_putstrui(const char *str, int i);
+int						print_string(char *str);
+int						parse_format_str(va_list args, char *trav);
+int						ft_printf(const char *format, ...);
 
-int		open_c(va_list args, t_args *ptr);
-int		open_s(va_list args, t_args *ptr);
-int		open_p(va_list args, t_args *ptr);
-int		open_di(va_list args, t_args *ptr);
+int						open_percentage(t_args *ptr);
+int						open_c(va_list args, t_args *ptr);
+int						open_s(va_list args, t_args *ptr);
+int						open_p(va_list args, t_args *ptr);
+int						open_di(va_list args, t_args *ptr);
+int						open_o(va_list args, t_args *ptr);
+int						open_u(va_list args, t_args *ptr);
+int						open_x(va_list args, t_args *ptr);
+int						open_f(va_list args, t_args *ptr);
+char					*open_h(va_list args, t_args *ptr);
+char					*open_hh(va_list args, t_args *ptr);
+char					*open_l(va_list args, t_args *ptr);
+char					*open_ll(va_list args, t_args *ptr);
 
-int		open_o(va_list args, t_args *ptr);
-int		open_u(va_list args, t_args *ptr);
-int		open_x(va_list args, t_args *ptr);
-int		open_f(va_list args, t_args *ptr);
-int		open_percentage(t_args *ptr);
+char					*convert(va_list args, t_args *ptr);
+int						print_argument(va_list args, t_args *ptr);
+int						parse_args(char *trav, va_list args, t_args *start);
+int						print_end(char *trav, t_args *ptr);
+int						print_middle(char *trav, t_args *ptr);
+int						validate_modifier(char *trav, int i);
+char					*zero_x(char *get, int mod);
 
-char	*open_h(va_list args, t_args *ptr);
-char	*open_hh(va_list args, t_args *ptr);
-char	*open_l(va_list args, t_args *ptr);
-char	*open_ll(va_list args, t_args *ptr);
-char	*open_cl(va_list args, t_args *ptr);
+void					free_list(t_args *ptr);
+void					validate(t_args *ptr);
+void					initialize_t_args(t_args *ptr);
+t_args					*put_to_list(char *trav, int i, t_args *ptr);
+t_args					*arguments_to_list(char *trav, t_args *start);
 
-char	*convert(va_list args, t_args *ptr);
-int		get_argument(va_list args, t_args *ptr);
-int		parse_arguments(char *trav, va_list args, t_args *start);
-
-int		get_middle(char *trav, t_args *ptr);
-int		get_end(char *trav, t_args *ptr);
-int		validate_modifier(char *trav, int i);
-
-t_args	*arguments_to_list(char *trav, t_args *start);
-t_args	*put_to_list(char *trav, int i, t_args *ptr);
-void	set_valid_flags(t_args *ptr);
-void	initialize_t_args(t_args *ptr);
-void	free_list(t_args *ptr);
-
-int		check_modifier(char *trav, int i, t_args *ptr);
-int		check_conversion(char *trav, int i, t_args *ptr);
-int		check_precision(char *trav, int i, t_args *ptr);
-int		check_flags(char *trav, int i, t_args *ptr);
-int		check_width(char *trav, int i, t_args *ptr);
+int						check_modifier(char *trav, int i, t_args *ptr);
+int						check_conversion(char *trav, int i, t_args *ptr);
+int						check_precision(char *trav, int x, t_args *ptr);
+int						check_flags(char *trav, int i, t_args *ptr);
+int						check_width(char *trav, int i, t_args *ptr);
 
 #endif

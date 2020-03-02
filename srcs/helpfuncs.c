@@ -6,49 +6,34 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 10:25:40 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/19 14:07:37 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/24 17:51:09 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		get_end(char *trav, t_args *ptr)
+int		print_end(char *trav, t_args *ptr)
 {
-//	char	*united;
-	char	*temp;
+	char	*str;
 	int		len;
-	int		i;
 
 	len = ft_strlen(trav) - ptr->end;
-	temp = ft_strndup(trav + ptr->end, len);
-	ft_putstr(temp);
-	i = ft_strlen(temp);
-//	united = ft_strjoin(str, temp);
-//	free(str);
-	free(temp);
-	return (i);
+	str = ft_strndup(trav + ptr->end, len);
+	return (print_string(str));
 }
 
-int		get_middle(char *trav, t_args *ptr)
+int		print_middle(char *trav, t_args *ptr)
 {
-//	char	*united;
-	char	*temp;
+	char	*str;
 	int		i;
 	int		len;
 
 	i = ptr->end;
-//	printf("i: %d\n", i);
 	while (trav[i] != '%')
 		i++;
 	len = i - ptr->end;
-	temp = ft_strndup(trav + ptr->end, len);
-	ft_putstr(temp);
-	i = ft_strlen(temp);
-//	united = ft_strjoin(str, temp);
-//	free(str);
-	free(temp);
-//	printf("united: '%s'\n", united);
-	return (i);
+	str = ft_strndup(trav + ptr->end, len);
+	return (print_string(str));
 }
 
 int		validate_modifier(char *trav, int i)
@@ -65,4 +50,16 @@ int		validate_modifier(char *trav, int i)
 		x++;
 	}
 	return (0);
+}
+
+char	*zero_x(char *get, int mod)
+{
+	char	*str;
+
+	if (mod == 2 || mod == 6)
+		str = ft_strjoin("0x", get);
+	else
+		str = ft_strjoin("0", get);
+	free(get);
+	return (str);
 }

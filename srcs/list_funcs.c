@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 13:28:11 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/19 11:19:05 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/24 17:33:33 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,47 +20,47 @@ void			free_list(t_args *ptr)
 
 void			initialize_t_args(t_args *ptr)
 {
-//	printf("here\n");
 	ptr->mod = -1;
-	ptr->flag[0] = -1;
-	ptr->flag[1] = -1;
-	ptr->flag[2] = -1;
-	ptr->flag[3] = -1;
-	ptr->flag[4] = -1;
+	ptr->flag[0] = 0;
+	ptr->flag[1] = 0;
+	ptr->flag[2] = 0;
+	ptr->flag[3] = 0;
+	ptr->flag[4] = 0;
 	ptr->w = 0;
 	ptr->prec = 0;
-	ptr->prec_w = -1;
+	ptr->prec_w = 0;
 	ptr->len_mod = -1;
 	ptr->neg = 0;
 	ptr->x = 0;
 	ptr->len = 1;
-	ptr->null = 0;
 	ptr->rm_p = 0;
 	ptr->str = 0;
 	ptr->start = 0;
 	ptr->end = 0;
-	ptr->next = 0;
-//	printf("there\n");
+	ptr->next = NULL;
 }
 
-void			set_valid_flags(t_args *ptr)
+void			validate(t_args *ptr)
 {
 	if (ptr->mod < 3)
 	{
-		ptr->flag[0] = -1;
-		ptr->flag[2] = -1;
-		ptr->flag[3] = -1;
-		ptr->flag[4] = -1;
+		ptr->flag[0] = 0;
+		ptr->flag[2] = 0;
+		ptr->flag[3] = 0;
+		ptr->flag[4] = 0;
 	}
+	if (ptr->mod == 7 && ptr->len_mod < 3)
+		ptr->len_mod = -1;
+	if (ptr->flag[1] && ptr->flag[3])
+		ptr->flag[3] = 0;
+	if (ptr->flag[2] && ptr->flag[4])
+		ptr->flag[4] = 0;
+	if (ptr->mod != 7 && ptr->prec)
+		ptr->flag[3] = 0;
+	if (ptr->mod == 6 && ptr->flag[3])
+		ptr->flag[3] = (ptr->flag[3] && !(ptr->prec)) ? 1 : 0;
 }
-/*
-static t_args	*empty(t_args *ptr, int i)
-{
-	ptr->mod = 10;
-	ptr->end = i;
-	return (ptr);
-}
-*/
+
 t_args			*put_to_list(char *trav, int i, t_args *ptr)
 {
 	static int x;
@@ -73,11 +73,7 @@ t_args			*put_to_list(char *trav, int i, t_args *ptr)
 		ptr = ptr->next;
 		initialize_t_args(ptr);
 	}
-//	printf("i: %d\n", i);
 	i = check_modifier(trav, i, ptr);
-//	printf("i: %d\n", i);
-//	if (x == i)
-//		return (empty(ptr, i));
 	while (x <= i)
 	{
 		x = check_flags(trav, x, ptr);
@@ -86,9 +82,7 @@ t_args			*put_to_list(char *trav, int i, t_args *ptr)
 		x = check_conversion(trav, x, ptr);
 		x++;
 	}
-//	printf("end: %d | mod: %d", ptr->end, ptr->mod);
-//	printf("w: %d | 2: %d | 4: %d | 1: %d | 3: %d\n", ptr->w, ptr->flag[2], ptr->flag[4], ptr->flag[1], ptr->flag[3]);
-	set_valid_flags(ptr);
+	validate(ptr);
 	return (ptr);
 }
 
@@ -100,16 +94,11 @@ t_args			*arguments_to_list(char *trav, t_args *start)
 	initialize_t_args(start);
 	ptr = start;
 	i = 0;
-//	printf("trav[i]: %c\n", trav[i]);
-//	printf("ptr->mod: %dn", ptr->mod);
 	while (trav[i])
 	{
-//		printf("trav[i]: %c\n", trav[i]);
 		if (trav[i] == '%')
 		{
-//			printf("trav[i]: %c\n", trav[i]);
 			ptr = put_to_list(trav, i + 1, ptr);
-//			printf("ptr->end: %d\n", ptr->end);
 			ptr->len = i;
 			i = ptr->end - 1;
 		}
@@ -117,6 +106,5 @@ t_args			*arguments_to_list(char *trav, t_args *start)
 	}
 	if (start->mod == -1)
 		start->str = 1;
-//	printf("start->mod: %d\n", start->mod);
 	return (start);
 }

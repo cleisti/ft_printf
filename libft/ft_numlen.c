@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_log10.c                                         :+:      :+:    :+:   */
+/*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/20 15:09:00 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/23 17:50:24 by cleisti          ###   ########.fr       */
+/*   Created: 2020/02/23 17:51:18 by cleisti           #+#    #+#             */
+/*   Updated: 2020/02/23 17:52:16 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long double		ft_log10(long double num, int div)
+int		ft_numlen(long long nb)
 {
-	while (div)
+	unsigned int size;
+
+	size = 1;
+	if (nb < 0)
+		size++;
+	while (nb / 10 != 0)
 	{
-		num /= 10;
-		div--;
+		nb /= 10;
+		size++;
 	}
-	return (num);
+	return (size);
 }

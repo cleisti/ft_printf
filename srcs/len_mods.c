@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 12:42:30 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/18 15:01:20 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/24 16:05:35 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 char	*open_h(va_list args, t_args *ptr)
 {
 	unsigned short	us;
-	char			*str;
 	short			sh;
+	char			*str;
 
 	if (ptr->mod == 3)
 	{
@@ -43,17 +43,16 @@ char	*open_h(va_list args, t_args *ptr)
 char	*open_hh(va_list args, t_args *ptr)
 {
 	unsigned char	uc;
-	char			*str;
 	char			c;
 	int				nb;
+	char			*str;
 
 	if (ptr->mod == 3)
 	{
 		c = va_arg(args, int);
 		nb = c;
 		ptr->neg = (nb < 0) ? 1 : 0;
-		str = ft_itoa(nb);
-		return (str);
+		return (ft_itoa(nb));
 	}
 	else
 	{
@@ -72,9 +71,9 @@ char	*open_hh(va_list args, t_args *ptr)
 
 char	*open_l(va_list args, t_args *ptr)
 {
-	char			*str;
-	long			lo;
 	unsigned long	ul;
+	long			lo;
+	char			*str;
 
 	if (ptr->mod == 3)
 	{
@@ -94,16 +93,15 @@ char	*open_l(va_list args, t_args *ptr)
 			str = ft_uitoa_base(ul, 8);
 		else
 			str = ft_uitoa_base(ul, 16);
-//		printf("STR:: '%s'\n", str);
 		return (str);
 	}
 }
 
 char	*open_ll(va_list args, t_args *ptr)
 {
-	char				*str;
-	long long			ll;
 	unsigned long long	ull;
+	long long			ll;
+	char				*str;
 
 	if (ptr->mod == 3)
 	{
@@ -122,7 +120,6 @@ char	*open_ll(va_list args, t_args *ptr)
 			str = ft_uitoa_base(ull, 8);
 		else
 			str = ft_uitoa_base(ull, 16);
-//		printf("STR:: '%s'\n", str);
 		return (str);
 	}
 }

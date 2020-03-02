@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 12:58:10 by cleisti           #+#    #+#             */
-/*   Updated: 2020/02/20 15:15:40 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/23 17:52:08 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int					ft_atoi(const char *str);
 int					ft_atoi_base(const char *str, int str_base);
 long long			ft_pow(int num, int topow);
 long double			ft_log10(long double num, int div);
+int					ft_numlen(long long nb);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 int					ft_isprint(int c);
@@ -83,7 +84,7 @@ char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(long long n);
 char				*ft_itoa_base(long long value, int base);
 char				*ft_uitoa_base(unsigned long long value, int base);
-char				*ft_ftoa(long double f, int prec);
+char				*ft_ftoa(long double f, int prec, int p);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));

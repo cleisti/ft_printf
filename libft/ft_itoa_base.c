@@ -6,7 +6,7 @@
 /*   By: cleisti <cleisti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 15:51:26 by cleisti           #+#    #+#             */
-/*   Updated: 2020/01/31 16:15:52 by cleisti          ###   ########.fr       */
+/*   Updated: 2020/02/23 16:37:27 by cleisti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,12 @@ char		*ft_itoa_base(long long value, int base)
 	str = ft_strnew(sizeof(size + 1));
 	str[size--] = '\0';
 	if (value == 0)
-		str[0] = '0';
-	else
+		return (str = ft_strcpy(str, "0"));
+	while (value)
 	{
-		while (value)
-		{
-			str[size] = vals[value % base];
-			value /= base;
-			size--;
-		}
+		str[size] = vals[value % base];
+		value /= base;
+		size--;
 	}
 	if (neg)
 		str[0] = '-';
