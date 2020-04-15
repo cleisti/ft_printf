@@ -3,42 +3,47 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: camilla <camilla@student.42.fr>            +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/04/06 13:53:33 by camilla           #+#    #+#              #
-#    Updated: 2020/04/15 18:47:30 by camilla          ###   ########.fr        #
+#    Created: 2020/01/10 13:19:17 by marvin            #+#    #+#              #
+#    Updated: 2020/01/27 17:56:33 by cleisti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cleisti.filler
-SRCS = srcs/main.c srcs/token.c srcs/placing.c srcs/testfuncs.c
+NAME = libftprintf.a
+SRCS = srcs/ft_printf.c srcs/check_funcs.c srcs/list_funcs.c srcs/parse_args.c \
+	   srcs/open_c.c srcs/open_s.c srcs/open_p.c srcs/open_di.c srcs/open_o.c \
+	   srcs/open_u.c srcs/open_x.c srcs/open_f.c srcs/helpfuncs.c srcs/len_mods.c
 OBJ = $(subst .c,.o,$(subst srcs/,,$(SRCS)))
-INCL = -I ./includes/ -I ./ft_printf/includes/ -I ./ft_printf/libft/includes/
-LIB = ./ft_printf/libftprintf.a
-FLAGS = -Wall -Wextra -Werror
+INCL = -I ./includes/ -I ./libft/includes/
+FLAGS = -Wall -Werror -Wextra
+LIBFT = ./libft/libft.a
+LIBRARY = ar rc $(NAME) $(OBJ)
 
 .PHONY: all clean fclean re
 
-all: $(SRCS) makelibft
-	@gcc -c $(FLAGS) $(INCL) $(SRCS)
-	@gcc -o $(NAME) $(OBJ) $(INCL) $(LIB)
-	@mv $(NAME) ./resources/players
-	
+all: $(NAME)
+
+$(NAME): $(SRCS)
+	@ make makelibft
+	@ cp $(LIBFT) ./$(NAME)
+	@ gcc $(FLAGS) $(INCL) -c $(SRCS)
+	@ $(LIBRARY)
+	@ ranlib $(NAME)
+
 makelibft:
-	@make -s fclean -C ./ft_printf && make -s -C ./ft_printf
+	@ make -s fclean -C ./libft && make -s -C ./libft
 
 clean:
-	@rm -f $(OBJ)
-	@make clean -C ./ft_printf
+	@ rm -f $(OBJ)
+	@ make -s clean -C ./libft
 
 fclean: clean
-	@rm -f resources/players/$(NAME)
-	@make fclean -C ./ft_printf
+	@ rm -f $(NAME)
+	@ make -s fclean -C ./libft
 
 re: fclean all
 
 run: re
-	resources/./filler_vm -p1 resources/players/cleisti.filler -p2 resources/players/carli.filler -v -f resources/maps/map00
-
-test: re
-	resources/players/./cleisti.filler
+	gcc ../testmains/main.c $(NAME) -I libft/includes -I includes
+	./a.out
