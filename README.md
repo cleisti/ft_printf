@@ -1,14 +1,15 @@
 # ft_printf
 Project ft_printf of Hive Helsinki
 
-Project idea:
-Write your own version of the lib c function printf.
+In this project we were supposed to re-write the lib-c function printf with some minimum-requirements and as many additional features as we liked. I went with the basics, but might be I will re-submit the project with some extras in the near future.<br>
 
-Must handle:
+Must handle:<br>
 
-modifiers csp
-modifiers diouxX with flags h, hh, l & ll
-f with flags l & L
-Flags: #+-0 & ' '
-Min field width
-Precision
+modifiers: csp<br>
+modifiers diouxX<br>
+- with flags h, hh, l & ll<br>
+modifier f<br>
+- with flags l & L<br>
+Flags: #+-0 & ' '<br>
+Min field width<br>
+Precision<br>
