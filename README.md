@@ -5,11 +5,11 @@ In this project we were supposed to re-write the lib-c function printf with some
 
 Must handle:<br>
 
-modifiers: csp<br>
-modifiers diouxX<br>
-- with flags h, hh, l & ll<br>
-modifier f<br>
-- with flags l & L<br>
-Flags: #+-0 & ' '<br>
-Min field width<br>
-Precision<br>
+- modifiers: csp
+- modifiers diouxX
+  - with flags h, hh, l & ll
+-modifier f
+  - with flags l & L
+- Flags: #+-0 & ' '
+- Min field width
+- Precision
